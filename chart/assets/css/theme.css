@@ -1,0 +1,21 @@
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #111418;
+  --surface: #181d23;
+  --surface-2: #242b33;
+  --text: #edf2f7;
+  --muted: #a9b4c0;
+  --border: #303842;
+  --primary: #2dd4bf;
+  --primary-strong: #5eead4;
+  --accent: #fb923c;
+  --shadow: 0 12px 32px rgba(0, 0, 0, 0.24);
+}
+
+[data-theme="dark"] .button.primary {
+  color: #06201d;
+}
+
+[data-theme="dark"] .markdown-body pre {
+  background: #0b0f14;
+}

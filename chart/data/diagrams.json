@@ -1,0 +1,8 @@
+[
+  {"title":"Flow Chart Examples","type":"Flow Chart","path":"docs/diagrams/flow-chart-examples.md","description":"Process decisions such as attendance, leave, and invoice approval."},
+  {"title":"DFD Examples","type":"DFD","path":"docs/diagrams/dfd-examples.md","description":"Data movement between users, modules, databases, and reports."},
+  {"title":"ERD Examples","type":"ERD","path":"docs/diagrams/erd-examples.md","description":"Database relationships for HR, payroll, sales, and inventory."},
+  {"title":"Sequence Diagram Examples","type":"Sequence","path":"docs/diagrams/sequence-diagram-examples.md","description":"Message order for approvals and integrations."},
+  {"title":"Deployment Diagram Examples","type":"Deployment","path":"docs/diagrams/deployment-diagram-examples.md","description":"Static, cloud, and enterprise deployment patterns."},
+  {"title":"Microservice Diagram Examples","type":"Microservice","path":"docs/diagrams/microservice-diagram-examples.md","description":"Service ownership, events, APIs, and reporting integration."}
+]

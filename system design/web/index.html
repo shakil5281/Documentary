@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>System Design Learning Hub</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" id="sidebar">
+        <div class="brand">
+          <div class="brand-mark">SD</div>
+          <div>
+            <p class="eyebrow">Learning Hub</p>
+            <h1>System Design</h1>
+          </div>
+        </div>
+
+        <label class="search-box" for="searchInput">
+          <span aria-hidden="true">⌕</span>
+          <input id="searchInput" type="search" placeholder="Search lessons">
+        </label>
+
+        <div class="progress-panel">
+          <div>
+            <strong id="progressCount">0 / 0</strong>
+            <span>completed</span>
+          </div>
+          <div class="progress-track" aria-hidden="true">
+            <div id="progressBar"></div>
+          </div>
+        </div>
+
+        <nav id="navList" class="nav-list" aria-label="Lessons"></nav>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <button class="icon-button mobile-only" id="menuButton" type="button" title="Open menu" aria-label="Open menu">☰</button>
+          <div class="title-block">
+            <p id="moduleLabel">Roadmap</p>
+            <h2 id="docTitle">System Design & Deep Learning Systems</h2>
+          </div>
+          <div class="actions">
+            <button class="icon-button" id="themeButton" type="button" title="Toggle theme" aria-label="Toggle theme">◐</button>
+            <button class="primary-button" id="completeButton" type="button">Mark Complete</button>
+          </div>
+        </header>
+
+        <section class="reader-layout">
+          <article class="reader">
+            <div class="reader-meta">
+              <span id="docPath">README.md</span>
+              <span id="readingTime">0 min read</span>
+            </div>
+            <div id="content" class="markdown-body" tabindex="-1"></div>
+          </article>
+
+          <aside class="outline">
+            <p>On This Page</p>
+            <div id="toc"></div>
+          </aside>
+        </section>
+
+        <footer class="lesson-footer">
+          <button id="prevButton" type="button">Previous</button>
+          <button id="nextButton" type="button">Next</button>
+        </footer>
+      </main>
+    </div>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

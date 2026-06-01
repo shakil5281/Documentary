@@ -1,44 +1,49 @@
 # Implementation Status
 
-Audit against the Full SQL Server Documentation Plan (all phases).
+Last verified: full audit with `web/verify.ps1` — **109** files in manifest and offline bundle.
 
 ## Complete
 
 | Item | Status |
 |------|--------|
 | SYLLABUS.md (16-week, modules 00–14) | Done |
-| README master TOC | Done |
-| LEARNING-CHECKLIST (00–14 + appendices) | Done |
+| README, DOC-INDEX, QUICK-REFERENCE | Done |
+| LEARNING-CHECKLIST + CAPSTONE-CHECKLIST | Done |
 | MODULE-TEMPLATE.md | Done |
-| Part folders docs + SQL README mirrors | Done |
-| Modules 00, 03, 06, 10–14 docs | Done |
-| Legacy docs 01–10 expanded (outcomes, mistakes, exercise links) | Done |
+| Part folders (docs + sql indexes) | Done |
+| Modules 00–14 docs + legacy 01–10 | Done |
 | Exercises + solutions 00–14 | Done |
-| SQL 00–25 + ecommerce project | Done |
+| SQL scripts 00–25 + ecommerce | Done |
 | Appendices A–D | Done |
-| DOC-INDEX, QUICK-REFERENCE, CAPSTONE-CHECKLIST | Done |
-| Production warnings on destructive scripts | Done |
-| Exercise blocks in sql 01–04 | Done |
-| Restore drill template (sql/25) | Done |
+| Web viewer (`web/index.html`) | Done |
+| Offline bundle (`web/content-bundle.js`) | Done — fixes "Failed to fetch" |
+| `web/verify.ps1` + `web/rebuild-all.ps1` | Done |
+| POST-NEXT-STEPS.md, WEB-VIEW.md | Done |
 
-## Optional / not in scope (per plan)
+## Web viewer — how to verify
+
+```powershell
+cd "c:\Users\shaki\Desktop\SHAKIL\learn\sql server"
+.\web\verify.ps1
+```
+
+Then open `web\index.html` (hard refresh `Ctrl+F5`). Status pill should show **Offline bundle ready**.
+
+After editing any `.md` or `.sql`:
+
+```powershell
+.\web\rebuild-all.ps1
+```
+
+## Optional
 
 | Item | Note |
 |------|------|
-| Full SSIS/SSRS/SSAS | Appendix D points to external learning |
-| Moving all SQL into part-XX subfolders | Index READMEs link to flat `sql/` names |
-| 1500–2500 words every legacy doc | Expanded via template sections; deep dive in part-* docs |
-| Bengali track | Optional: docs/14-bengali-summary.md |
+| Bengali | [docs/14-bengali-summary.md](docs/14-bengali-summary.md) |
+| SSIS/SSRS | See appendix D |
 
-## File naming note
+## Entry points
 
-- `docs/14-bengali-summary.md` — optional Bengali (module label collision with ecommerce doc number only in filename)
-- `docs/14-capstone-ecommerce.md` — ecommerce capstone (module 14 topic)
-
-## Learner entry points
-
-1. [SYLLABUS.md](SYLLABUS.md)
-2. [sql/00-verify-instance.sql](sql/00-verify-instance.sql) → [sql/01-create-sample-database.sql](sql/01-create-sample-database.sql)
-3. [exercises/](exercises/) after each module
-
-Last audit: plan implementation complete; gaps above closed in follow-up pass.
+1. [SYLLABUS.md](SYLLABUS.md) — course order  
+2. [web/index.html](web/index.html) — all docs in browser  
+3. [sql/00-verify-instance.sql](sql/00-verify-instance.sql) — SSMS start  

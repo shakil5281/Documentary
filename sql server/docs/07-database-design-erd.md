@@ -1,5 +1,13 @@
 # 07 — Database Design, DBMS Concepts & ERD
 
+> **Part:** I Foundations (also Module 03) | **Exercises:** [module-03](../exercises/module-03.md) | **Merged guide:** [03-data-modeling.md](part-01-foundations/03-data-modeling.md)
+
+## Learning outcomes
+
+1. Draw ERD with correct cardinality  
+2. Apply normalization to 3NF  
+3. Map entities to DDL with keys and constraints  
+
 ## What is a DBMS?
 
 A **Database Management System** is software that:

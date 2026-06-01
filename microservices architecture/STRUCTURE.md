@@ -1,147 +1,118 @@
 # File and Folder Structure
 
-This document explains how the learning materials in this repository are organized, why each part exists, and how to navigate them.
+Full deep-learning course layout. Canonical content lives in `docs/`; `theory/` contains legacy redirect stubs.
 
 ---
 
-## Top-Level Layout
+## Top-level layout
 
 ```
 microservices architecture/
 │
-├── README.md                 # Entry point — learning path and module index
-├── STRUCTURE.md              # This file — explains repository organization
+├── README.md                 # Entry point
+├── SYLLABUS.md               # 16-week curriculum (22 modules)
+├── LEARNING-CHECKLIST.md     # Mastery checklist per module
+├── DOC-INDEX.md              # Master index of all documents
+├── QUICK-REFERENCE.md        # Formulas, patterns, complexity cheat sheet
+├── STRUCTURE.md              # This file
 │
-└── theory/                   # All theory content lives here
-    ├── 01-introduction.md
-    ├── 02-monolith-vs-microservices.md
-    ├── 03-core-principles.md
-    ├── 04-communication-patterns.md
-    ├── 05-data-management.md
-    ├── 06-reliability-and-resilience.md
-    ├── 07-security.md
-    ├── 08-observability.md
-    ├── 09-deployment-and-devops.md
-    ├── 10-advanced-patterns.md
-    └── 11-tradeoffs-and-decision-framework.md
+├── docs/
+│   ├── MODULE-TEMPLATE.md
+│   ├── DATA-FLOW-AND-SYSTEM-DESIGN.md   # DFD + system design (full guide)
+│   ├── part-01-foundations/       # Modules 00–04
+│   ├── part-02-core-architecture/ # Modules 05–10
+│   ├── part-03-production/        # Modules 11–15
+│   ├── part-04-advanced/          # Modules 16–21
+│   └── appendices/                # A–E reference
+│       └── E-data-flow-and-system-design.md → full guide
+│
+├── exercises/
+│   ├── module-00.md … module-21.md
+│   ├── solutions/
+│   └── README.md
+│
+├── web/                      # Interactive documentation viewer
+│   ├── index.html
+│   ├── files-manifest.json
+│   ├── content-bundle.js
+│   ├── manifest-bundle.js
+│   ├── rebuild-all.ps1
+│   └── serve.ps1 / serve.bat
+│
+├── WEB-VIEW.md               # Web viewer instructions
+│
+└── theory/                   # Legacy redirects → docs/
+    └── 01-introduction.md … 11-tradeoffs…
 ```
 
 ---
 
-## Why This Structure?
+## Part I — Foundations (`docs/part-01-foundations/`)
 
-### Flat `theory/` folder with numbered files
-
-Each module is a single Markdown file prefixed with a number (`01`, `02`, … `11`).
-
-| Design choice | Reason |
-|---------------|--------|
-| **Numbered prefixes** | Enforces reading order. Microservices concepts are cumulative — you need boundaries before communication, communication before data management. |
-| **One topic per file** | Keeps each module focused. You can read one concept deeply without scrolling through unrelated material. |
-| **No nested subfolders per topic** | Theory content does not need code, configs, or assets. A flat list is easier to browse and maintain. |
-| **No `src/`, `docs/`, or `examples/` folders** | This is a theory-only guide. Omitting implementation folders avoids confusion about whether you need to run anything. |
+| File | Module | Topics |
+|------|--------|--------|
+| `00-distributed-systems-basics.md` | 00 | Fallacies, latency, partial failure, CAP intro |
+| `01-introduction.md` | 01 | What microservices are, vocabulary, example |
+| `02-monolith-vs-microservices.md` | 02 | Comparison, modular monolith, migration |
+| `03-core-principles.md` | 03 | DDD, bounded context, Conway's Law |
+| `04-api-networking-fundamentals.md` | 04 | HTTP, REST basics, DNS/TCP/TLS |
 
 ---
 
-## File Descriptions
+## Part II — Core Architecture (`docs/part-02-core-architecture/`)
 
-### Root files
-
-| File | Purpose |
-|------|---------|
-| `README.md` | Main index. Lists all modules, reading order, prerequisites, and estimated time. Start here. |
-| `STRUCTURE.md` | Meta-documentation. Explains the repository layout itself (this file). |
-
-### Theory modules (`theory/`)
-
-| File | Level | What it covers |
-|------|-------|----------------|
-| `01-introduction.md` | Beginner | Definition of microservices, vocabulary, architectural context |
-| `02-monolith-vs-microservices.md` | Beginner | Side-by-side comparison, strengths, weaknesses, migration signals |
-| `03-core-principles.md` | Beginner–Intermediate | Service boundaries, Domain-Driven Design, autonomy, loose coupling |
-| `04-communication-patterns.md` | Intermediate | REST, gRPC, message queues, pub/sub, event-driven design |
-| `05-data-management.md` | Intermediate | Database per service, CAP theorem, eventual consistency, Saga, Outbox |
-| `06-reliability-and-resilience.md` | Intermediate | Failure modes, timeouts, retries, circuit breaker, bulkhead, graceful degradation |
-| `07-security.md` | Intermediate–Advanced | Authentication, authorization, service-to-service security, secrets |
-| `08-observability.md` | Intermediate–Advanced | The three pillars: logs, metrics, traces; SLOs and alerting |
-| `09-deployment-and-devops.md` | Advanced | Containers, orchestration, CI/CD, deployment strategies, infrastructure as code |
-| `10-advanced-patterns.md` | Advanced | API Gateway, BFF, CQRS, Event Sourcing, Service Mesh |
-| `11-tradeoffs-and-decision-framework.md` | Advanced | When to adopt, anti-patterns, organizational impact, decision checklist |
+| File | Module | Topics |
+|------|--------|--------|
+| `05-communication-patterns.md` | 05 | REST, gRPC, events, orchestration |
+| `06-data-management.md` | 06 | DB per service, Saga, Outbox, CAP |
+| `07-reliability-and-resilience.md` | 07 | Timeouts, circuit breaker, bulkhead |
+| `08-scalability-patterns.md` | 08 | Scale out, sharding, caching, HPA |
+| `09-performance-engineering.md` | 09 | Latency budget, percentiles, hot path |
+| `10-time-complexity.md` | 10 | Big-O for distributed flows |
 
 ---
 
-## How Modules Relate to Each Other
+## Part III — Production (`docs/part-03-production/`)
+
+| File | Module | Topics |
+|------|--------|--------|
+| `11-security.md` | 11 | Auth, zero trust, mTLS, secrets |
+| `12-observability.md` | 12 | Logs, metrics, traces, SLOs |
+| `13-deployment-and-devops.md` | 13 | K8s, CI/CD, deployment strategies |
+| `14-flexibility-and-evolvability.md` | 14 | Versioning, Strangler Fig, polyglot |
+| `15-testing-and-contracts.md` | 15 | Contract tests, test pyramid |
+
+---
+
+## Part IV — Advanced (`docs/part-04-advanced/`)
+
+| File | Module | Topics |
+|------|--------|--------|
+| `16-advanced-patterns.md` | 16 | CQRS, event sourcing, BFF |
+| `17-gateway-and-service-mesh.md` | 17 | Gateway, Istio/Linkerd |
+| `18-multi-region-ha-dr.md` | 18 | DR, RPO/RTO, active-active |
+| `19-capacity-planning-and-cost.md` | 19 | QPS math, load testing, cost |
+| `20-tradeoffs-and-decision-framework.md` | 20 | ADRs, anti-patterns |
+| `21-capstone-architecture-projects.md` | 21 | Full e-commerce architecture |
+
+---
+
+## Reading order
 
 ```
-01 Introduction
-    │
-    ▼
-02 Monolith vs Microservices          ← foundational decision
-    │
-    ▼
-03 Core Principles                    ← how to split services
-    │
-    ├──────────────┬──────────────┐
-    ▼              ▼              ▼
-04 Communication  05 Data Mgmt   06 Reliability
-    │              │              │
-    └──────────────┼──────────────┘
-                   ▼
-            07 Security
-                   │
-                   ▼
-            08 Observability
-                   │
-                   ▼
-            09 Deployment
-                   │
-                   ▼
-            10 Advanced Patterns
-                   │
-                   ▼
-            11 Trade-offs           ← synthesize everything
+Part I (00→04) → Part II (05→10) → Part III (11→15) → Part IV (16→21)
 ```
 
-- **Modules 04, 05, 06** can be read in any order after 03, but reading 04 first is recommended because communication affects data and reliability design.
-- **Module 11** should be read last — it assumes knowledge from all prior modules.
+Modules 08–10 are the **scalability / performance / complexity** block — read in order after 07.
 
 ---
 
-## What Is Intentionally Not Included
+## Exercises
 
-This repository is theory-only. The following are **deliberately absent**:
-
-| Not included | Why |
-|--------------|-----|
-| Source code (`src/`, services) | Focus is conceptual understanding, not implementation |
-| Docker / Kubernetes configs | Deployment concepts are explained in text in module 09 |
-| Diagrams as image files | Architecture is described with ASCII diagrams inside each module |
-| Quizzes or exercises | Can be added later if you want active recall practice |
-| External links to paid courses | Keeps the guide self-contained |
+Each module has `exercises/module-NN.md` and `exercises/solutions/module-NN.md`. Architecture and analysis focus (no code labs).
 
 ---
 
-## How to Extend This Guide Later
+## Legacy `theory/` folder
 
-If you want to grow this into a fuller learning repository:
-
-```
-microservices architecture/
-├── README.md
-├── STRUCTURE.md
-├── theory/                    # keep as-is
-├── diagrams/                  # optional: exported architecture images
-├── glossary.md                # optional: centralized term definitions
-└── references.md              # optional: books, papers, talks
-```
-
-Add new theory modules as `12-<topic>.md` following the same numbering convention. Update `README.md` and this file when you do.
-
----
-
-## Quick Navigation
-
-- **New to microservices?** → Start at [theory/01-introduction.md](./theory/01-introduction.md)
-- **Already know basics, want patterns?** → Jump to [theory/04-communication-patterns.md](./theory/04-communication-patterns.md)
-- **Evaluating whether to adopt microservices?** → Read [theory/02-monolith-vs-microservices.md](./theory/02-monolith-vs-microservices.md) and [theory/11-tradeoffs-and-decision-framework.md](./theory/11-tradeoffs-and-decision-framework.md)
-- **Confused about the repo layout?** → You are reading the right file.
+Files `theory/01` through `theory/11` redirect to new `docs/` paths for backward compatibility.

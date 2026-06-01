@@ -175,4 +175,14 @@ Compare **before/after** index or rewrite.
 3. Load 100k+ rows (script 10) and compare scan vs seek plans.
 4. Document backup + security roles for “production” (docs 05–06, script 08–09).
 
+## Exercises
+
+[exercises/module-05.md](../exercises/module-05.md)
+
+## Further reading
+
+- [Microsoft Learn — Query processing](https://learn.microsoft.com/en-us/sql/relational-databases/query-processing-architecture-guide)
+
+---
+
 You now have a full path from **SSMS beginner** to **production-aware advanced developer**.

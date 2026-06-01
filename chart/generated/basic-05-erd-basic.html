@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ERD Basic</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/theme.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <main class="single-page">
+    <a class="button" href="../index.html">Back to Library</a>
+    <article id="content" class="markdown-body"></article>
+  </main>
+  <script>
+    const markdown = "# ERD Basic\n\n## Learning Objective\nBy the end of this lesson, you will model entities and relationships before creating database tables.\n\n## What is ERD Basic?\nAn Entity Relationship Diagram shows business entities, their attributes, and how they relate to each other.\n\n## Why it is important?\nERP modules share master data and transaction data. ERDs help prevent duplicate tables, broken relationships, and confusing ownership.\n\n## ERP Example\nOne Department has many Employees. One Employee has many Attendance records. One Employee can have many Payslips.\n\n## Step-by-step Explanation\n1. Find business nouns such as Employee, Department, Invoice, or Item.\n2. Add important attributes for each entity.\n3. Decide relationship type: one-to-one, one-to-many, or many-to-many.\n4. Resolve many-to-many relationships with bridge entities.\n5. Review names with business users and developers.\n\n## Diagram\n\n```mermaid\nerDiagram\n    DEPARTMENT ||--o{ EMPLOYEE : contains\n    EMPLOYEE ||--o{ ATTENDANCE : records\n    EMPLOYEE ||--o{ PAYSLIP : receives\n    DEPARTMENT {\n      int id PK\n      string name\n    }\n    EMPLOYEE {\n      int id PK\n      int department_id FK\n      string name\n    }\n    ATTENDANCE {\n      int id PK\n      int employee_id FK\n      date work_date\n    }\n```\n\n## Key Points\n- Entities become tables in most relational designs.\n- Relationships explain business rules.\n- Cardinality matters.\n- Bridge tables solve many-to-many relationships.\n\n## Common Mistakes\n- Confusing screens with entities.\n- Adding every possible field too early.\n- Forgetting historical records.\n- Not defining ownership of shared master data.\n\n## Practice Task\nCreate an ERD for Customer, Sales Order, Sales Order Item, Product, Invoice, and Payment.\n\n## Summary\nERDs are the foundation of reliable ERP data modeling.\n";
+    document.getElementById("content").innerHTML = marked.parse(markdown);
+    document.querySelectorAll("pre code.language-mermaid").forEach((block) => {
+      const wrapper = document.createElement("div");
+      wrapper.className = "mermaid";
+      wrapper.textContent = block.textContent;
+      block.closest("pre").replaceWith(wrapper);
+    });
+    mermaid.initialize({ startOnLoad: false });
+    mermaid.run({ nodes: document.querySelectorAll(".mermaid") });
+  </script>
+</body>
+</html>

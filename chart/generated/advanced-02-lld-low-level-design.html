@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LLD Low Level Design</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/theme.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <main class="single-page">
+    <a class="button" href="../index.html">Back to Library</a>
+    <article id="content" class="markdown-body"></article>
+  </main>
+  <script>
+    const markdown = "# LLD Low Level Design\n\n## Learning Objective\nBy the end of this lesson, you will convert high-level architecture into implementation-ready detail.\n\n## What is LLD Low Level Design?\nA Low Level Design describes classes, functions, validations, tables, APIs, sequence flows, errors, and edge cases for a feature or module.\n\n## Why it is important?\nAt advanced level, documentation must guide decisions, not only describe screens. It should help teams understand tradeoffs, risks, module boundaries, performance, deployment, and long-term maintenance.\n\n## ERP Example\nLeave approval LLD defines request states, validation methods, approval policy, tables, API payloads, and audit records.\n\n## Step-by-step Explanation\n1. Define scope and business capability.\n2. Identify users, modules, data, integrations, and constraints.\n3. Document the main design decisions and alternatives.\n4. Add diagrams that show structure and behavior.\n5. Review non-functional requirements such as security, scale, reliability, and operations.\n6. Create an implementation checklist.\n\n## Diagram\n\n```mermaid\nflowchart LR\n    A[Business Capability] --> B[Architecture Decision]\n    B --> C[Module Boundary]\n    C --> D[Data and Integration Design]\n    D --> E[Deployment and Operations]\n    E --> F[Review and Improve]\n```\n\n## Key Points\n- Architecture is about tradeoffs.\n- Advanced documents should include risks and assumptions.\n- Module ownership prevents long-term confusion.\n- Non-functional requirements must be explicit.\n\n## Common Mistakes\n- Creating diagrams without decision context.\n- Ignoring operational concerns.\n- Over-engineering before the business needs it.\n- Copying architecture patterns without understanding cost.\n\n## Practice Task\nCreate a two-page architecture note for LLD Low Level Design. Include problem, decision, diagram, risks, alternatives, and review checklist.\n\n## Summary\nLLD Low Level Design helps you move from feature documentation to architecture-level thinking.\n";
+    document.getElementById("content").innerHTML = marked.parse(markdown);
+    document.querySelectorAll("pre code.language-mermaid").forEach((block) => {
+      const wrapper = document.createElement("div");
+      wrapper.className = "mermaid";
+      wrapper.textContent = block.textContent;
+      block.closest("pre").replaceWith(wrapper);
+    });
+    mermaid.initialize({ startOnLoad: false });
+    mermaid.run({ nodes: document.querySelectorAll(".mermaid") });
+  </script>
+</body>
+</html>

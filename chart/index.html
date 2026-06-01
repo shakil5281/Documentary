@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Learning Documentary Library</title>
+  <link rel="stylesheet" href="assets/css/style.css?v=3">
+  <link rel="stylesheet" href="assets/css/theme.css?v=3">
+  <link rel="stylesheet" href="assets/css/responsive.css?v=3">
+  <script defer src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script defer src="assets/js/offline-data.js?v=3"></script>
+  <script defer src="assets/js/theme.js?v=3"></script>
+  <script defer src="assets/js/sidebar.js?v=3"></script>
+  <script defer src="assets/js/markdown-renderer.js?v=3"></script>
+  <script defer src="assets/js/search.js?v=3"></script>
+  <script defer src="assets/js/app.js?v=3"></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html">Learning Documentary Library</a>
+    <nav class="topnav" aria-label="Primary navigation">
+      <a href="roadmap.html">Roadmap</a>
+      <a href="diagrams.html">Diagrams</a>
+      <a href="search.html">Search</a>
+    </nav>
+    <button class="icon-button" data-sidebar-toggle aria-label="Toggle sidebar">☰</button>
+    <button class="icon-button" data-theme-toggle aria-label="Toggle theme">◐</button>
+  </header>
+
+  <main class="layout">
+    <aside class="sidebar" data-sidebar>
+      <div class="sidebar-tools">
+        <input id="lessonFilter" type="search" placeholder="Filter lessons">
+      </div>
+      <nav id="lessonTree" class="lesson-tree" aria-label="Lesson navigation"></nav>
+    </aside>
+
+    <section class="content-shell">
+      <div class="library-hero">
+        <p class="eyebrow">Static documentation project</p>
+        <h1>Web Development and ERP Enterprise Architecture Learning Library</h1>
+        <p>Study software diagrams, architecture decisions, API design, ERP module flows, deployment patterns, and the path from beginner documentation to enterprise solution architecture.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="roadmap.html">Open Roadmap</a>
+          <a class="button" href="search.html">Search Lessons</a>
+        </div>
+      </div>
+
+      <section class="stats-grid" aria-label="Library summary">
+        <article><strong id="lessonCount">0</strong><span>Lessons</span></article>
+        <article><strong>4</strong><span>Levels</span></article>
+        <article><strong>6</strong><span>Diagram Packs</span></article>
+        <article><strong>No</strong><span>Backend Required</span></article>
+      </section>
+
+      <section class="section">
+        <div class="section-title">
+          <h2>Start Learning</h2>
+          <p>Choose a level, then open a lesson from the sidebar.</p>
+        </div>
+        <div id="levelCards" class="card-grid"></div>
+      </section>
+
+      <section class="section">
+        <div class="section-title">
+          <h2>Lesson Viewer</h2>
+          <p id="currentLessonLabel">Select a lesson from the sidebar.</p>
+        </div>
+        <div class="lesson-nav" aria-label="Lesson navigation controls">
+          <button class="button" id="previousLesson" type="button">Previous</button>
+          <span id="lessonProgress" class="lesson-progress">Lesson 0 of 0</span>
+          <button class="button primary" id="nextLesson" type="button">Next</button>
+        </div>
+        <article id="markdownContent" class="markdown-body"></article>
+        <div class="lesson-nav bottom" aria-label="Lesson navigation controls">
+          <button class="button" id="previousLessonBottom" type="button">Previous</button>
+          <button class="button primary" id="nextLessonBottom" type="button">Next</button>
+        </div>
+      </section>
+    </section>
+  </main>
+</body>
+</html>

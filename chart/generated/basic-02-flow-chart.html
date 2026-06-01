@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Flow Chart</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/theme.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <main class="single-page">
+    <a class="button" href="../index.html">Back to Library</a>
+    <article id="content" class="markdown-body"></article>
+  </main>
+  <script>
+    const markdown = "# Flow Chart\n\n## Learning Objective\nBy the end of this lesson, you will read and create process diagrams that show actions, decisions, and outcomes.\n\n## What is Flow Chart?\nA flow chart shows the order of steps in a process. It uses boxes for actions, diamonds for decisions, and arrows for movement from one step to another.\n\n## Why it is important?\nERP processes are rule-heavy. Flow charts make business rules visible before developers write code, especially for approval, attendance, payroll, purchasing, and inventory workflows.\n\n## ERP Example\nAttendance processing checks whether an employee has a valid shift. If a shift exists, the ERP calculates late time; otherwise it marks an exception for HR review.\n\n## Step-by-step Explanation\n1. Start with the business trigger.\n2. Add each action in sequence.\n3. Add decision points with yes/no paths.\n4. Show exception paths clearly.\n5. End with the saved ERP record or notification.\n\n## Diagram\n\n```mermaid\nflowchart TD\n    A[Employee Punch In] --> B{Shift Found?}\n    B -->|Yes| C[Calculate Late Time]\n    B -->|No| D[Mark Attendance Exception]\n    C --> E{Late Beyond Grace?}\n    E -->|Yes| F[Apply Late Rule]\n    E -->|No| G[Mark Present]\n    F --> H[Save Daily Attendance]\n    G --> H\n    D --> H\n```\n\n## Key Points\n- Use one start point for simple flows.\n- Every decision should have labeled outcomes.\n- Exception paths are part of the real process.\n- Flow charts are best for procedural logic.\n\n## Common Mistakes\n- Drawing too many details in one chart.\n- Missing rejected, failed, or exception states.\n- Using vague labels such as process data.\n- Not validating the flow with business users.\n\n## Practice Task\nDraw a flow chart for leave request approval with balance validation, manager approval, HR update, and rejection path.\n\n## Summary\nFlow charts are the first practical tool for explaining business process logic.\n";
+    document.getElementById("content").innerHTML = marked.parse(markdown);
+    document.querySelectorAll("pre code.language-mermaid").forEach((block) => {
+      const wrapper = document.createElement("div");
+      wrapper.className = "mermaid";
+      wrapper.textContent = block.textContent;
+      block.closest("pre").replaceWith(wrapper);
+    });
+    mermaid.initialize({ startOnLoad: false });
+    mermaid.run({ nodes: document.querySelectorAll(".mermaid") });
+  </script>
+</body>
+</html>

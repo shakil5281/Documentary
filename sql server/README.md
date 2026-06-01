@@ -2,7 +2,9 @@
 
 English curriculum from **install** through **advanced developer + DBA** topics. Theory, SSMS labs, exercises with solutions, and capstone projects.
 
-**Start here:** [SYLLABUS.md](SYLLABUS.md) | **Track progress:** [LEARNING-CHECKLIST.md](LEARNING-CHECKLIST.md) | **Cheat sheet:** [QUICK-REFERENCE.md](QUICK-REFERENCE.md)
+**Finished the course?** [POST-NEXT-STEPS.md](POST-NEXT-STEPS.md)
+
+**Start here:** [SYLLABUS.md](SYLLABUS.md) | **Web view:** Open [web/index.html](web/index.html) (offline bundle) or run `.\web\serve.bat` → [http://localhost:8080/web/index.html](http://localhost:8080/web/index.html) · Verify: `.\web\verify.ps1` · [WEB-VIEW.md](WEB-VIEW.md) | **Track progress:** [LEARNING-CHECKLIST.md](LEARNING-CHECKLIST.md) | **Cheat sheet:** [QUICK-REFERENCE.md](QUICK-REFERENCE.md)
 
 ---
 

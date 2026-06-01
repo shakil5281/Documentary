@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Use Case Diagram</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/theme.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <main class="single-page">
+    <a class="button" href="../index.html">Back to Library</a>
+    <article id="content" class="markdown-body"></article>
+  </main>
+  <script>
+    const markdown = "# Use Case Diagram\n\n## Learning Objective\nBy the end of this lesson, you will define system scope by showing actors and their goals.\n\n## What is Use Case Diagram?\nA use case diagram shows who uses the system and what goals they perform. It does not show database details or internal code.\n\n## Why it is important?\nERP projects often expand in scope. Use cases help teams agree which users can do which business actions.\n\n## ERP Example\nAn Employee submits leave, a Manager approves leave, and HR updates leave policy. These are separate use cases with different permissions.\n\n## Step-by-step Explanation\n1. Define the system boundary.\n2. List actors outside the system.\n3. Write use cases as user goals.\n4. Connect actors to their use cases.\n5. Separate main use cases from optional or included behavior.\n\n## Diagram\n\n```mermaid\nflowchart LR\n    Employee[Employee] --> Submit((Submit Leave Request))\n    Manager[Manager] --> Approve((Approve Leave Request))\n    HR[HR Officer] --> Policy((Maintain Leave Policy))\n    Submit --> Validate((Validate Leave Balance))\n    Approve --> Notify((Notify Employee))\n```\n\n## Key Points\n- Actors are roles, not always individual people.\n- Use cases should be goal-oriented.\n- The system boundary prevents scope confusion.\n- Permissions can be discovered from use cases.\n\n## Common Mistakes\n- Writing technical functions instead of user goals.\n- Putting database tables inside the diagram.\n- Missing external systems as actors.\n- Making one actor for every job title.\n\n## Practice Task\nCreate a use case diagram for payroll processing with Employee, HR Officer, Payroll Manager, Finance, and Bank actors.\n\n## Summary\nUse case diagrams help define what the ERP must allow each role to accomplish.\n";
+    document.getElementById("content").innerHTML = marked.parse(markdown);
+    document.querySelectorAll("pre code.language-mermaid").forEach((block) => {
+      const wrapper = document.createElement("div");
+      wrapper.className = "mermaid";
+      wrapper.textContent = block.textContent;
+      block.closest("pre").replaceWith(wrapper);
+    });
+    mermaid.initialize({ startOnLoad: false });
+    mermaid.run({ nodes: document.querySelectorAll(".mermaid") });
+  </script>
+</body>
+</html>

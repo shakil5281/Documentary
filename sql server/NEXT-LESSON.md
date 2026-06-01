@@ -1,18 +1,45 @@
-# Start Here
+# Post-Course — Your Next Steps
 
-The full curriculum is organized in **[SYLLABUS.md](SYLLABUS.md)** (modules 00–14).
+The **full curriculum** (modules 00–14) and **web viewer** are ready. There is no “module 15” in the syllabus — you apply what you learned.
 
-## New learners
+---
 
-1. [Module 00 — Install](docs/part-01-foundations/00-install-setup.md)
-2. Run [sql/00-verify-instance.sql](sql/00-verify-instance.sql)
-3. [Module 01 — SSMS](docs/01-getting-started-ssms.md)
-4. Run [sql/01-create-sample-database.sql](sql/01-create-sample-database.sql)
+## Do this now (today)
 
-## Returning learners
+1. **Start web viewer**
 
-Use [DOC-INDEX.md](DOC-INDEX.md) to jump to any module doc and SQL script.
+   ```powershell
+   .\web\serve.bat
+   ```
+   or `.\web\serve.ps1`
 
-## Finished?
+2. Open **http://localhost:8080/web/index.html**
 
-[COURSE-COMPLETE.md](COURSE-COMPLETE.md) | [LEARNING-CHECKLIST.md](LEARNING-CHECKLIST.md)
+3. In SSMS run:
+   - `sql/01-create-sample-database.sql`
+   - `sql/web-demo-queries.sql`
+
+---
+
+## This week
+
+Read **[POST-NEXT-STEPS.md](POST-NEXT-STEPS.md)** and complete:
+
+- [ ] [CAPSTONE-CHECKLIST.md](CAPSTONE-CHECKLIST.md) — at least Library + E-commerce  
+- [ ] One restore drill (`sql/25-restore-drill-template.sql`)  
+- [ ] Fill [production runbook](docs/12-production-runbook-template.md) for one database  
+
+---
+
+## Reference
+
+| Need | File |
+|------|------|
+| Full plan | [SYLLABUS.md](SYLLABUS.md) |
+| Web grid + tabs | [WEB-VIEW.md](WEB-VIEW.md) |
+| Track skills | [LEARNING-CHECKLIST.md](LEARNING-CHECKLIST.md) |
+| Done? | [COURSE-COMPLETE.md](COURSE-COMPLETE.md) |
+
+---
+
+**Optional:** Say **walkthrough ecommerce** for a guided capstone session in chat.

@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>API Basic</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/theme.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <main class="single-page">
+    <a class="button" href="../index.html">Back to Library</a>
+    <article id="content" class="markdown-body"></article>
+  </main>
+  <script>
+    const markdown = "# API Basic\n\n## Learning Objective\nBy the end of this lesson, you will understand how applications communicate through requests and responses.\n\n## What is API Basic?\nAn API is a contract that lets one software component communicate with another. Web APIs often use HTTP methods, URLs, headers, request bodies, and response bodies.\n\n## Why it is important?\nERP systems integrate with mobile apps, biometric devices, banks, e-commerce systems, SMS gateways, and reporting tools.\n\n## ERP Example\nA mobile app sends a POST request to create a leave request. The ERP API validates employee identity, leave balance, and policy rules before returning a result.\n\n## Step-by-step Explanation\n1. Identify the business resource.\n2. Choose the HTTP method.\n3. Define request fields.\n4. Define response fields and status codes.\n5. Document validation and error messages.\n\n## Diagram\n\n```mermaid\nsequenceDiagram\n    participant Mobile\n    participant API\n    participant LeaveModule\n    participant Database\n    Mobile->>API: POST /leave-requests\n    API->>LeaveModule: Validate request\n    LeaveModule->>Database: Save pending request\n    Database-->>LeaveModule: Request ID\n    API-->>Mobile: 201 Created\n```\n\n## Key Points\n- GET reads data.\n- POST creates data.\n- PUT or PATCH updates data.\n- Status codes and error messages are part of the contract.\n\n## Common Mistakes\n- Designing URLs around actions only.\n- Returning unclear errors.\n- Not documenting required fields.\n- Ignoring API versioning and permissions.\n\n## Practice Task\nWrite an API contract for creating a purchase requisition, including URL, method, request JSON, response JSON, and validation errors.\n\n## Summary\nAPI basics let you document integration points clearly before development starts.\n";
+    document.getElementById("content").innerHTML = marked.parse(markdown);
+    document.querySelectorAll("pre code.language-mermaid").forEach((block) => {
+      const wrapper = document.createElement("div");
+      wrapper.className = "mermaid";
+      wrapper.textContent = block.textContent;
+      block.closest("pre").replaceWith(wrapper);
+    });
+    mermaid.initialize({ startOnLoad: false });
+    mermaid.run({ nodes: document.querySelectorAll(".mermaid") });
+  </script>
+</body>
+</html>

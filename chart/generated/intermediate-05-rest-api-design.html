@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>REST API Design</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/theme.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <main class="single-page">
+    <a class="button" href="../index.html">Back to Library</a>
+    <article id="content" class="markdown-body"></article>
+  </main>
+  <script>
+    const markdown = "# REST API Design\n\n## Learning Objective\nBy the end of this lesson, you will design predictable HTTP APIs using resources, methods, status codes, and contracts.\n\n## What is REST API Design?\nREST API design organizes endpoints around resources such as employees, invoices, items, or leave requests. It uses HTTP methods to express operations.\n\n## Why it is important?\nERP APIs are consumed by mobile apps, integrations, reporting tools, and other services. A consistent API reduces integration bugs.\n\n## ERP Example\nLeave requests can use GET /leave-requests, POST /leave-requests, GET /leave-requests/{id}, and PATCH /leave-requests/{id}/status.\n\n## Step-by-step Explanation\n1. Name resources with nouns.\n2. Use HTTP methods consistently.\n3. Define request and response schemas.\n4. Use meaningful status codes.\n5. Document pagination, filtering, validation, and permissions.\n\n## Diagram\n\n```mermaid\nsequenceDiagram\n    participant Client\n    participant API\n    participant LeaveService\n    participant DB\n    Client->>API: POST /leave-requests\n    API->>LeaveService: validate and create\n    LeaveService->>DB: insert leave request\n    DB-->>LeaveService: created row\n    API-->>Client: 201 Created with request id\n```\n\n## Key Points\n- Resources should be nouns.\n- Use status codes intentionally.\n- Validation errors need field-level details.\n- APIs should be versioned before external use.\n\n## Common Mistakes\n- Using /getEmployee and /saveEmployee style endpoints everywhere.\n- Returning 200 for every error.\n- Not documenting authentication and authorization.\n- Changing response fields without versioning.\n\n## Practice Task\nDesign REST endpoints for Item, Stock Transfer, and Stock Adjustment resources.\n\n## Summary\nGood REST design makes ERP integrations easier to understand, test, and maintain.\n";
+    document.getElementById("content").innerHTML = marked.parse(markdown);
+    document.querySelectorAll("pre code.language-mermaid").forEach((block) => {
+      const wrapper = document.createElement("div");
+      wrapper.className = "mermaid";
+      wrapper.textContent = block.textContent;
+      block.closest("pre").replaceWith(wrapper);
+    });
+    mermaid.initialize({ startOnLoad: false });
+    mermaid.run({ nodes: document.querySelectorAll(".mermaid") });
+  </script>
+</body>
+</html>

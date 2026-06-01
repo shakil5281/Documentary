@@ -1,0 +1,32 @@
+[
+  {
+    "phase": 1,
+    "title": "Basic Process Documentation",
+    "goal": "Learn how to describe a business problem before code is written. Start with SDLC, flow charts, DFD, database basics, ERD, use cases, and API basics.",
+    "outcomes": ["write requirement notes", "draw simple process flow", "identify actors and data", "explain basic API request"]
+  },
+  {
+    "phase": 2,
+    "title": "Intermediate Modeling",
+    "goal": "Convert business understanding into developer-friendly models. Study UML, sequence diagrams, class diagrams, component diagrams, REST API design, relationships, and clean architecture.",
+    "outcomes": ["model message order", "design domain classes", "separate modules", "document REST contracts"]
+  },
+  {
+    "phase": 3,
+    "title": "Advanced Architecture",
+    "goal": "Move from feature documentation to architecture decisions. Learn HLD, LLD, system design, modular monolith, microservices, event-driven design, scalability, and performance.",
+    "outcomes": ["write HLD", "write LLD", "compare architecture choices", "plan scale and reliability"]
+  },
+  {
+    "phase": 4,
+    "title": "Enterprise ERP Architecture",
+    "goal": "Understand ERP as a connected enterprise platform. Study module ownership, ERP data flow, deployment architecture, security architecture, and DevOps CI/CD.",
+    "outcomes": ["map ERP modules", "trace transaction data", "design deployment view", "define security and release process"]
+  },
+  {
+    "phase": 5,
+    "title": "Capstone Documentation Portfolio",
+    "goal": "Create one complete documentary pack for a real ERP module such as HR, Payroll, Inventory, Sales, Procurement, or Finance.",
+    "outcomes": ["BRD and SRS", "flow chart and DFD", "ERD and API contract", "HLD and LLD", "deployment and security checklist"]
+  }
+]

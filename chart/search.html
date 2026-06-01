@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Search | Learning Documentary Library</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/theme.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+  <script defer src="assets/js/offline-data.js"></script>
+  <script defer src="assets/js/theme.js"></script>
+  <script defer src="assets/js/search.js"></script>
+  <script defer src="assets/js/app.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html">Learning Documentary Library</a>
+    <nav class="topnav"><a href="index.html">Library</a><a href="roadmap.html">Roadmap</a><a href="diagrams.html">Diagrams</a></nav>
+    <button class="icon-button" data-theme-toggle aria-label="Toggle theme">◐</button>
+  </header>
+  <main class="single-page">
+    <section class="page-heading">
+      <p class="eyebrow">Find knowledge fast</p>
+      <h1>Search Lessons</h1>
+      <p>Search by title, level, keyword, ERP module, diagram type, or architecture concept.</p>
+    </section>
+    <div class="search-panel">
+      <input id="globalSearchInput" type="search" placeholder="Search lessons, diagrams, ERP, API, database">
+      <select id="levelFilter" aria-label="Filter by level">
+        <option value="all">All levels</option>
+        <option value="basic">Basic</option>
+        <option value="intermediate">Intermediate</option>
+        <option value="advanced">Advanced</option>
+        <option value="high-level">High Level</option>
+        <option value="diagrams">Diagrams</option>
+      </select>
+    </div>
+    <section id="searchResults" class="search-results"></section>
+  </main>
+</body>
+</html>

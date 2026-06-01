@@ -1,5 +1,13 @@
 # 08 — Data Flow Diagrams & System Architecture
 
+> **Part:** I Foundations (Module 03) | **Exercises:** [module-03](../exercises/module-03.md)
+
+## Learning outcomes
+
+1. Draw context and Level 1 DFD  
+2. Map processes to stored procedures and databases  
+3. Name scale-out patterns for read/write load  
+
 A **Data Flow Diagram (DFD)** shows how data **moves** between external entities, processes, and data stores—not table columns like an ERD.
 
 ---

@@ -1,0 +1,78 @@
+@media (max-width: 980px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    position: fixed;
+    inset: 64px auto 0 0;
+    width: min(340px, 88vw);
+    transform: translateX(-105%);
+    transition: transform 180ms ease;
+    z-index: 15;
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  .stats-grid,
+  .card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 680px) {
+  .topbar {
+    padding: 0 12px;
+    gap: 8px;
+  }
+
+  .brand {
+    font-size: 0.92rem;
+  }
+
+  .topnav {
+    display: none;
+  }
+
+  .content-shell,
+  .single-page {
+    padding: 18px;
+  }
+
+  .library-hero,
+  .page-heading {
+    padding-top: 28px;
+  }
+
+  .stats-grid,
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section-title {
+    display: block;
+  }
+
+  .markdown-body {
+    padding: 16px;
+  }
+
+  .lesson-nav {
+    align-items: stretch;
+  }
+
+  .lesson-nav .button {
+    flex: 1 1 0;
+  }
+
+  .lesson-progress {
+    display: none;
+  }
+
+  .search-panel select,
+  .filter-row select {
+    flex: 1 1 100%;
+  }
+}

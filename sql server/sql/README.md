@@ -2,6 +2,7 @@
 
 | Script | Module | Notes |
 |--------|--------|-------|
+| [web-demo-queries.sql](web-demo-queries.sql) | Web hub | Demo for web/index.html |
 | [00-verify-instance.sql](00-verify-instance.sql) | 00 | Read-only |
 | [01-create-sample-database.sql](01-create-sample-database.sql) | 01 | **DROP/recreate LearnSQL** |
 | [02-ddl-basics.sql](02-ddl-basics.sql) | 02 | Alters LearnSQL |

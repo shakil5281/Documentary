@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Component Diagram</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/theme.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <main class="single-page">
+    <a class="button" href="../index.html">Back to Library</a>
+    <article id="content" class="markdown-body"></article>
+  </main>
+  <script>
+    const markdown = "# Component Diagram\n\n## Learning Objective\nBy the end of this lesson, you will show software modules, dependencies, and integration boundaries.\n\n## What is Component Diagram?\nA component diagram explains larger building blocks of a system and how they depend on each other. Components may be modules, services, libraries, UI apps, or external systems.\n\n## Why it is important?\nERP solutions need clear module boundaries. Component diagrams show which module owns which capability and which dependencies must be managed carefully.\n\n## ERP Example\nHR owns employee master data. Attendance depends on HR. Payroll depends on HR, Attendance, and Finance posting rules.\n\n## Step-by-step Explanation\n1. List major modules or services.\n2. Define ownership for each component.\n3. Draw dependencies between components.\n4. Mark external systems separately.\n5. Avoid circular dependencies where possible.\n\n## Diagram\n\n```mermaid\nflowchart LR\n    UI[Web UI] --> HR[HR Component]\n    UI --> ATT[Attendance Component]\n    ATT --> HR\n    PAY[Payroll Component] --> HR\n    PAY --> ATT\n    PAY --> FIN[Finance Component]\n    FIN --> DB[(ERP Database)]\n```\n\n## Key Points\n- Components are larger than classes.\n- Dependencies show architectural risk.\n- A module should own its business rules.\n- External systems should be visible.\n\n## Common Mistakes\n- Drawing screens instead of components.\n- Hiding shared database dependencies.\n- Allowing every module to depend on every other module.\n- Not documenting integration contracts.\n\n## Practice Task\nCreate a component diagram for Sales, Inventory, Finance, Reporting, and Notification modules.\n\n## Summary\nComponent diagrams prepare you for clean module design and enterprise architecture discussions.\n";
+    document.getElementById("content").innerHTML = marked.parse(markdown);
+    document.querySelectorAll("pre code.language-mermaid").forEach((block) => {
+      const wrapper = document.createElement("div");
+      wrapper.className = "mermaid";
+      wrapper.textContent = block.textContent;
+      block.closest("pre").replaceWith(wrapper);
+    });
+    mermaid.initialize({ startOnLoad: false });
+    mermaid.run({ nodes: document.querySelectorAll(".mermaid") });
+  </script>
+</body>
+</html>

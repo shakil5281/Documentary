@@ -1,0 +1,778 @@
+﻿[
+    {
+        "path":  "DOC-INDEX.md",
+        "name":  "DOC-INDEX.md",
+        "ext":  ".md",
+        "category":  "root",
+        "part":  "all",
+        "title":  "DOC-INDEX"
+    },
+    {
+        "path":  "LEARNING-CHECKLIST.md",
+        "name":  "LEARNING-CHECKLIST.md",
+        "ext":  ".md",
+        "category":  "root",
+        "part":  "all",
+        "title":  "LEARNING-CHECKLIST"
+    },
+    {
+        "path":  "QUICK-REFERENCE.md",
+        "name":  "QUICK-REFERENCE.md",
+        "ext":  ".md",
+        "category":  "root",
+        "part":  "all",
+        "title":  "QUICK-REFERENCE"
+    },
+    {
+        "path":  "README.md",
+        "name":  "README.md",
+        "ext":  ".md",
+        "category":  "root",
+        "part":  "all",
+        "title":  "README"
+    },
+    {
+        "path":  "STRUCTURE.md",
+        "name":  "STRUCTURE.md",
+        "ext":  ".md",
+        "category":  "root",
+        "part":  "all",
+        "title":  "STRUCTURE"
+    },
+    {
+        "path":  "SYLLABUS.md",
+        "name":  "SYLLABUS.md",
+        "ext":  ".md",
+        "category":  "root",
+        "part":  "all",
+        "title":  "SYLLABUS"
+    },
+    {
+        "path":  "WEB-VIEW.md",
+        "name":  "WEB-VIEW.md",
+        "ext":  ".md",
+        "category":  "root",
+        "part":  "all",
+        "title":  "WEB-VIEW"
+    },
+    {
+        "path":  "docs/DATA-FLOW-AND-SYSTEM-DESIGN.md",
+        "name":  "DATA-FLOW-AND-SYSTEM-DESIGN.md",
+        "ext":  ".md",
+        "category":  "docs",
+        "part":  "all",
+        "title":  "DATA-FLOW-AND-SYSTEM-DESIGN"
+    },
+    {
+        "path":  "docs/MODULE-TEMPLATE.md",
+        "name":  "MODULE-TEMPLATE.md",
+        "ext":  ".md",
+        "category":  "docs",
+        "part":  "all",
+        "title":  "MODULE-TEMPLATE"
+    },
+    {
+        "path":  "docs/appendices/A-glossary.md",
+        "name":  "A-glossary.md",
+        "ext":  ".md",
+        "category":  "appendices",
+        "part":  "all",
+        "title":  "A-glossary"
+    },
+    {
+        "path":  "docs/appendices/B-pattern-catalog.md",
+        "name":  "B-pattern-catalog.md",
+        "ext":  ".md",
+        "category":  "appendices",
+        "part":  "all",
+        "title":  "B-pattern-catalog"
+    },
+    {
+        "path":  "docs/appendices/C-troubleshooting.md",
+        "name":  "C-troubleshooting.md",
+        "ext":  ".md",
+        "category":  "appendices",
+        "part":  "all",
+        "title":  "C-troubleshooting"
+    },
+    {
+        "path":  "docs/appendices/D-interview-prep.md",
+        "name":  "D-interview-prep.md",
+        "ext":  ".md",
+        "category":  "appendices",
+        "part":  "all",
+        "title":  "D-interview-prep"
+    },
+    {
+        "path":  "docs/appendices/E-data-flow-and-system-design.md",
+        "name":  "E-data-flow-and-system-design.md",
+        "ext":  ".md",
+        "category":  "appendices",
+        "part":  "all",
+        "title":  "E-data-flow-and-system-design"
+    },
+    {
+        "path":  "docs/appendices/README.md",
+        "name":  "README.md",
+        "ext":  ".md",
+        "category":  "appendices",
+        "part":  "all",
+        "title":  "README"
+    },
+    {
+        "path":  "docs/part-01-foundations/00-distributed-systems-basics.md",
+        "name":  "00-distributed-systems-basics.md",
+        "ext":  ".md",
+        "category":  "docs",
+        "part":  "I",
+        "title":  "00-distributed-systems-basics"
+    },
+    {
+        "path":  "docs/part-01-foundations/01-introduction.md",
+        "name":  "01-introduction.md",
+        "ext":  ".md",
+        "category":  "docs",
+        "part":  "I",
+        "title":  "01-introduction"
+    },
+    {
+        "path":  "docs/part-01-foundations/02-monolith-vs-microservices.md",
+        "name":  "02-monolith-vs-microservices.md",
+        "ext":  ".md",
+        "category":  "docs",
+        "part":  "I",
+        "title":  "02-monolith-vs-microservices"
+    },
+    {
+        "path":  "docs/part-01-foundations/03-core-principles.md",
+        "name":  "03-core-principles.md",
+        "ext":  ".md",
+        "category":  "docs",
+        "part":  "I",
+        "title":  "03-core-principles"
+    },
+    {
+        "path":  "docs/part-01-foundations/04-api-networking-fundamentals.md",
+        "name":  "04-api-networking-fundamentals.md",
+        "ext":  ".md",
+        "category":  "docs",
+        "part":  "I",
+        "title":  "04-api-networking-fundamentals"
+    },
+    {
+        "path":  "docs/part-01-foundations/README.md",
+        "name":  "README.md",
+        "ext":  ".md",
+        "category":  "docs",
+        "part":  "I",
+        "title":  "README"
+    },
+    {
+        "path":  "docs/part-02-core-architecture/05-communication-patterns.md",
+        "name":  "05-communication-patterns.md",
+        "ext":  ".md",
+        "category":  "docs",
+        "part":  "II",
+        "title":  "05-communication-patterns"
+    },
+    {
+        "path":  "docs/part-02-core-architecture/06-data-management.md",
+        "name":  "06-data-management.md",
+        "ext":  ".md",
+        "category":  "docs",
+        "part":  "II",
+        "title":  "06-data-management"
+    },
+    {
+        "path":  "docs/part-02-core-architecture/07-reliability-and-resilience.md",
+        "name":  "07-reliability-and-resilience.md",
+        "ext":  ".md",
+        "category":  "docs",
+        "part":  "II",
+        "title":  "07-reliability-and-resilience"
+    },
+    {
+        "path":  "docs/part-02-core-architecture/08-scalability-patterns.md",
+        "name":  "08-scalability-patterns.md",
+        "ext":  ".md",
+        "category":  "docs",
+        "part":  "II",
+        "title":  "08-scalability-patterns"
+    },
+    {
+        "path":  "docs/part-02-core-architecture/09-performance-engineering.md",
+        "name":  "09-performance-engineering.md",
+        "ext":  ".md",
+        "category":  "docs",
+        "part":  "II",
+        "title":  "09-performance-engineering"
+    },
+    {
+        "path":  "docs/part-02-core-architecture/10-time-complexity.md",
+        "name":  "10-time-complexity.md",
+        "ext":  ".md",
+        "category":  "docs",
+        "part":  "II",
+        "title":  "10-time-complexity"
+    },
+    {
+        "path":  "docs/part-02-core-architecture/README.md",
+        "name":  "README.md",
+        "ext":  ".md",
+        "category":  "docs",
+        "part":  "II",
+        "title":  "README"
+    },
+    {
+        "path":  "docs/part-03-production/11-security.md",
+        "name":  "11-security.md",
+        "ext":  ".md",
+        "category":  "docs",
+        "part":  "III",
+        "title":  "11-security"
+    },
+    {
+        "path":  "docs/part-03-production/12-observability.md",
+        "name":  "12-observability.md",
+        "ext":  ".md",
+        "category":  "docs",
+        "part":  "III",
+        "title":  "12-observability"
+    },
+    {
+        "path":  "docs/part-03-production/13-deployment-and-devops.md",
+        "name":  "13-deployment-and-devops.md",
+        "ext":  ".md",
+        "category":  "docs",
+        "part":  "III",
+        "title":  "13-deployment-and-devops"
+    },
+    {
+        "path":  "docs/part-03-production/14-flexibility-and-evolvability.md",
+        "name":  "14-flexibility-and-evolvability.md",
+        "ext":  ".md",
+        "category":  "docs",
+        "part":  "III",
+        "title":  "14-flexibility-and-evolvability"
+    },
+    {
+        "path":  "docs/part-03-production/15-testing-and-contracts.md",
+        "name":  "15-testing-and-contracts.md",
+        "ext":  ".md",
+        "category":  "docs",
+        "part":  "III",
+        "title":  "15-testing-and-contracts"
+    },
+    {
+        "path":  "docs/part-03-production/README.md",
+        "name":  "README.md",
+        "ext":  ".md",
+        "category":  "docs",
+        "part":  "III",
+        "title":  "README"
+    },
+    {
+        "path":  "docs/part-04-advanced/16-advanced-patterns.md",
+        "name":  "16-advanced-patterns.md",
+        "ext":  ".md",
+        "category":  "docs",
+        "part":  "IV",
+        "title":  "16-advanced-patterns"
+    },
+    {
+        "path":  "docs/part-04-advanced/17-gateway-and-service-mesh.md",
+        "name":  "17-gateway-and-service-mesh.md",
+        "ext":  ".md",
+        "category":  "docs",
+        "part":  "IV",
+        "title":  "17-gateway-and-service-mesh"
+    },
+    {
+        "path":  "docs/part-04-advanced/18-multi-region-ha-dr.md",
+        "name":  "18-multi-region-ha-dr.md",
+        "ext":  ".md",
+        "category":  "docs",
+        "part":  "IV",
+        "title":  "18-multi-region-ha-dr"
+    },
+    {
+        "path":  "docs/part-04-advanced/19-capacity-planning-and-cost.md",
+        "name":  "19-capacity-planning-and-cost.md",
+        "ext":  ".md",
+        "category":  "docs",
+        "part":  "IV",
+        "title":  "19-capacity-planning-and-cost"
+    },
+    {
+        "path":  "docs/part-04-advanced/20-tradeoffs-and-decision-framework.md",
+        "name":  "20-tradeoffs-and-decision-framework.md",
+        "ext":  ".md",
+        "category":  "docs",
+        "part":  "IV",
+        "title":  "20-tradeoffs-and-decision-framework"
+    },
+    {
+        "path":  "docs/part-04-advanced/21-capstone-architecture-projects.md",
+        "name":  "21-capstone-architecture-projects.md",
+        "ext":  ".md",
+        "category":  "docs",
+        "part":  "IV",
+        "title":  "21-capstone-architecture-projects"
+    },
+    {
+        "path":  "docs/part-04-advanced/README.md",
+        "name":  "README.md",
+        "ext":  ".md",
+        "category":  "docs",
+        "part":  "IV",
+        "title":  "README"
+    },
+    {
+        "path":  "exercises/module-00.md",
+        "name":  "module-00.md",
+        "ext":  ".md",
+        "category":  "exercises",
+        "part":  "I",
+        "title":  "module-00"
+    },
+    {
+        "path":  "exercises/module-01.md",
+        "name":  "module-01.md",
+        "ext":  ".md",
+        "category":  "exercises",
+        "part":  "I",
+        "title":  "module-01"
+    },
+    {
+        "path":  "exercises/module-02.md",
+        "name":  "module-02.md",
+        "ext":  ".md",
+        "category":  "exercises",
+        "part":  "I",
+        "title":  "module-02"
+    },
+    {
+        "path":  "exercises/module-03.md",
+        "name":  "module-03.md",
+        "ext":  ".md",
+        "category":  "exercises",
+        "part":  "I",
+        "title":  "module-03"
+    },
+    {
+        "path":  "exercises/module-04.md",
+        "name":  "module-04.md",
+        "ext":  ".md",
+        "category":  "exercises",
+        "part":  "I",
+        "title":  "module-04"
+    },
+    {
+        "path":  "exercises/module-05.md",
+        "name":  "module-05.md",
+        "ext":  ".md",
+        "category":  "exercises",
+        "part":  "II",
+        "title":  "module-05"
+    },
+    {
+        "path":  "exercises/module-06.md",
+        "name":  "module-06.md",
+        "ext":  ".md",
+        "category":  "exercises",
+        "part":  "II",
+        "title":  "module-06"
+    },
+    {
+        "path":  "exercises/module-07.md",
+        "name":  "module-07.md",
+        "ext":  ".md",
+        "category":  "exercises",
+        "part":  "II",
+        "title":  "module-07"
+    },
+    {
+        "path":  "exercises/module-08.md",
+        "name":  "module-08.md",
+        "ext":  ".md",
+        "category":  "exercises",
+        "part":  "II",
+        "title":  "module-08"
+    },
+    {
+        "path":  "exercises/module-09.md",
+        "name":  "module-09.md",
+        "ext":  ".md",
+        "category":  "exercises",
+        "part":  "II",
+        "title":  "module-09"
+    },
+    {
+        "path":  "exercises/module-10.md",
+        "name":  "module-10.md",
+        "ext":  ".md",
+        "category":  "exercises",
+        "part":  "II",
+        "title":  "module-10"
+    },
+    {
+        "path":  "exercises/module-11.md",
+        "name":  "module-11.md",
+        "ext":  ".md",
+        "category":  "exercises",
+        "part":  "III",
+        "title":  "module-11"
+    },
+    {
+        "path":  "exercises/module-12.md",
+        "name":  "module-12.md",
+        "ext":  ".md",
+        "category":  "exercises",
+        "part":  "III",
+        "title":  "module-12"
+    },
+    {
+        "path":  "exercises/module-13.md",
+        "name":  "module-13.md",
+        "ext":  ".md",
+        "category":  "exercises",
+        "part":  "III",
+        "title":  "module-13"
+    },
+    {
+        "path":  "exercises/module-14.md",
+        "name":  "module-14.md",
+        "ext":  ".md",
+        "category":  "exercises",
+        "part":  "III",
+        "title":  "module-14"
+    },
+    {
+        "path":  "exercises/module-15.md",
+        "name":  "module-15.md",
+        "ext":  ".md",
+        "category":  "exercises",
+        "part":  "III",
+        "title":  "module-15"
+    },
+    {
+        "path":  "exercises/module-16.md",
+        "name":  "module-16.md",
+        "ext":  ".md",
+        "category":  "exercises",
+        "part":  "IV",
+        "title":  "module-16"
+    },
+    {
+        "path":  "exercises/module-17.md",
+        "name":  "module-17.md",
+        "ext":  ".md",
+        "category":  "exercises",
+        "part":  "IV",
+        "title":  "module-17"
+    },
+    {
+        "path":  "exercises/module-18.md",
+        "name":  "module-18.md",
+        "ext":  ".md",
+        "category":  "exercises",
+        "part":  "IV",
+        "title":  "module-18"
+    },
+    {
+        "path":  "exercises/module-19.md",
+        "name":  "module-19.md",
+        "ext":  ".md",
+        "category":  "exercises",
+        "part":  "IV",
+        "title":  "module-19"
+    },
+    {
+        "path":  "exercises/module-20.md",
+        "name":  "module-20.md",
+        "ext":  ".md",
+        "category":  "exercises",
+        "part":  "IV",
+        "title":  "module-20"
+    },
+    {
+        "path":  "exercises/module-21.md",
+        "name":  "module-21.md",
+        "ext":  ".md",
+        "category":  "exercises",
+        "part":  "IV",
+        "title":  "module-21"
+    },
+    {
+        "path":  "exercises/README.md",
+        "name":  "README.md",
+        "ext":  ".md",
+        "category":  "exercises",
+        "part":  "all",
+        "title":  "README"
+    },
+    {
+        "path":  "exercises/solutions/module-00.md",
+        "name":  "module-00.md",
+        "ext":  ".md",
+        "category":  "solutions",
+        "part":  "I",
+        "title":  "module-00"
+    },
+    {
+        "path":  "exercises/solutions/module-01.md",
+        "name":  "module-01.md",
+        "ext":  ".md",
+        "category":  "solutions",
+        "part":  "I",
+        "title":  "module-01"
+    },
+    {
+        "path":  "exercises/solutions/module-02.md",
+        "name":  "module-02.md",
+        "ext":  ".md",
+        "category":  "solutions",
+        "part":  "I",
+        "title":  "module-02"
+    },
+    {
+        "path":  "exercises/solutions/module-03.md",
+        "name":  "module-03.md",
+        "ext":  ".md",
+        "category":  "solutions",
+        "part":  "I",
+        "title":  "module-03"
+    },
+    {
+        "path":  "exercises/solutions/module-04.md",
+        "name":  "module-04.md",
+        "ext":  ".md",
+        "category":  "solutions",
+        "part":  "I",
+        "title":  "module-04"
+    },
+    {
+        "path":  "exercises/solutions/module-05.md",
+        "name":  "module-05.md",
+        "ext":  ".md",
+        "category":  "solutions",
+        "part":  "II",
+        "title":  "module-05"
+    },
+    {
+        "path":  "exercises/solutions/module-06.md",
+        "name":  "module-06.md",
+        "ext":  ".md",
+        "category":  "solutions",
+        "part":  "II",
+        "title":  "module-06"
+    },
+    {
+        "path":  "exercises/solutions/module-07.md",
+        "name":  "module-07.md",
+        "ext":  ".md",
+        "category":  "solutions",
+        "part":  "II",
+        "title":  "module-07"
+    },
+    {
+        "path":  "exercises/solutions/module-08.md",
+        "name":  "module-08.md",
+        "ext":  ".md",
+        "category":  "solutions",
+        "part":  "II",
+        "title":  "module-08"
+    },
+    {
+        "path":  "exercises/solutions/module-09.md",
+        "name":  "module-09.md",
+        "ext":  ".md",
+        "category":  "solutions",
+        "part":  "II",
+        "title":  "module-09"
+    },
+    {
+        "path":  "exercises/solutions/module-10.md",
+        "name":  "module-10.md",
+        "ext":  ".md",
+        "category":  "solutions",
+        "part":  "II",
+        "title":  "module-10"
+    },
+    {
+        "path":  "exercises/solutions/module-11.md",
+        "name":  "module-11.md",
+        "ext":  ".md",
+        "category":  "solutions",
+        "part":  "III",
+        "title":  "module-11"
+    },
+    {
+        "path":  "exercises/solutions/module-12.md",
+        "name":  "module-12.md",
+        "ext":  ".md",
+        "category":  "solutions",
+        "part":  "III",
+        "title":  "module-12"
+    },
+    {
+        "path":  "exercises/solutions/module-13.md",
+        "name":  "module-13.md",
+        "ext":  ".md",
+        "category":  "solutions",
+        "part":  "III",
+        "title":  "module-13"
+    },
+    {
+        "path":  "exercises/solutions/module-14.md",
+        "name":  "module-14.md",
+        "ext":  ".md",
+        "category":  "solutions",
+        "part":  "III",
+        "title":  "module-14"
+    },
+    {
+        "path":  "exercises/solutions/module-15.md",
+        "name":  "module-15.md",
+        "ext":  ".md",
+        "category":  "solutions",
+        "part":  "III",
+        "title":  "module-15"
+    },
+    {
+        "path":  "exercises/solutions/module-16.md",
+        "name":  "module-16.md",
+        "ext":  ".md",
+        "category":  "solutions",
+        "part":  "IV",
+        "title":  "module-16"
+    },
+    {
+        "path":  "exercises/solutions/module-17.md",
+        "name":  "module-17.md",
+        "ext":  ".md",
+        "category":  "solutions",
+        "part":  "IV",
+        "title":  "module-17"
+    },
+    {
+        "path":  "exercises/solutions/module-18.md",
+        "name":  "module-18.md",
+        "ext":  ".md",
+        "category":  "solutions",
+        "part":  "IV",
+        "title":  "module-18"
+    },
+    {
+        "path":  "exercises/solutions/module-19.md",
+        "name":  "module-19.md",
+        "ext":  ".md",
+        "category":  "solutions",
+        "part":  "IV",
+        "title":  "module-19"
+    },
+    {
+        "path":  "exercises/solutions/module-20.md",
+        "name":  "module-20.md",
+        "ext":  ".md",
+        "category":  "solutions",
+        "part":  "IV",
+        "title":  "module-20"
+    },
+    {
+        "path":  "exercises/solutions/module-21.md",
+        "name":  "module-21.md",
+        "ext":  ".md",
+        "category":  "solutions",
+        "part":  "IV",
+        "title":  "module-21"
+    },
+    {
+        "path":  "theory/01-introduction.md",
+        "name":  "01-introduction.md",
+        "ext":  ".md",
+        "category":  "theory",
+        "part":  "I",
+        "title":  "01-introduction"
+    },
+    {
+        "path":  "theory/02-monolith-vs-microservices.md",
+        "name":  "02-monolith-vs-microservices.md",
+        "ext":  ".md",
+        "category":  "theory",
+        "part":  "I",
+        "title":  "02-monolith-vs-microservices"
+    },
+    {
+        "path":  "theory/03-core-principles.md",
+        "name":  "03-core-principles.md",
+        "ext":  ".md",
+        "category":  "theory",
+        "part":  "I",
+        "title":  "03-core-principles"
+    },
+    {
+        "path":  "theory/04-communication-patterns.md",
+        "name":  "04-communication-patterns.md",
+        "ext":  ".md",
+        "category":  "theory",
+        "part":  "I",
+        "title":  "04-communication-patterns"
+    },
+    {
+        "path":  "theory/05-data-management.md",
+        "name":  "05-data-management.md",
+        "ext":  ".md",
+        "category":  "theory",
+        "part":  "II",
+        "title":  "05-data-management"
+    },
+    {
+        "path":  "theory/06-reliability-and-resilience.md",
+        "name":  "06-reliability-and-resilience.md",
+        "ext":  ".md",
+        "category":  "theory",
+        "part":  "II",
+        "title":  "06-reliability-and-resilience"
+    },
+    {
+        "path":  "theory/07-security.md",
+        "name":  "07-security.md",
+        "ext":  ".md",
+        "category":  "theory",
+        "part":  "II",
+        "title":  "07-security"
+    },
+    {
+        "path":  "theory/08-observability.md",
+        "name":  "08-observability.md",
+        "ext":  ".md",
+        "category":  "theory",
+        "part":  "II",
+        "title":  "08-observability"
+    },
+    {
+        "path":  "theory/09-deployment-and-devops.md",
+        "name":  "09-deployment-and-devops.md",
+        "ext":  ".md",
+        "category":  "theory",
+        "part":  "II",
+        "title":  "09-deployment-and-devops"
+    },
+    {
+        "path":  "theory/10-advanced-patterns.md",
+        "name":  "10-advanced-patterns.md",
+        "ext":  ".md",
+        "category":  "theory",
+        "part":  "II",
+        "title":  "10-advanced-patterns"
+    },
+    {
+        "path":  "theory/11-tradeoffs-and-decision-framework.md",
+        "name":  "11-tradeoffs-and-decision-framework.md",
+        "ext":  ".md",
+        "category":  "theory",
+        "part":  "III",
+        "title":  "11-tradeoffs-and-decision-framework"
+    }
+]

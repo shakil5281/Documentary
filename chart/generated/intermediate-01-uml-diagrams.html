@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>UML Diagrams</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/theme.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <main class="single-page">
+    <a class="button" href="../index.html">Back to Library</a>
+    <article id="content" class="markdown-body"></article>
+  </main>
+  <script>
+    const markdown = "# UML Diagrams\n\n## Learning Objective\nBy the end of this lesson, you will choose the right UML diagram for structure, behavior, and implementation planning.\n\n## What is UML Diagrams?\nUML is a standard visual language for modeling software. Common diagrams include use case, class, sequence, activity, component, deployment, and state diagrams.\n\n## Why it is important?\nERP architecture needs multiple views. Business users need process views, developers need class and sequence views, and infrastructure teams need deployment views.\n\n## ERP Example\nA leave module can be described with use cases for scope, sequence diagrams for approval flow, class diagrams for domain rules, and deployment diagrams for hosting.\n\n## Step-by-step Explanation\n1. Decide the question the diagram must answer.\n2. Use behavioral diagrams for workflows.\n3. Use structural diagrams for modules, classes, and deployment.\n4. Keep each diagram focused.\n5. Link diagrams to requirements.\n\n## Diagram\n\n```mermaid\nflowchart TD\n    A[Documentation Question] --> B{What do you need to explain?}\n    B -->|User goals| C[Use Case Diagram]\n    B -->|Message order| D[Sequence Diagram]\n    B -->|Domain model| E[Class Diagram]\n    B -->|System parts| F[Component Diagram]\n    B -->|Infrastructure| G[Deployment Diagram]\n```\n\n## Key Points\n- No single diagram explains everything.\n- UML helps different audiences understand different views.\n- Use consistent names across diagrams.\n- Keep diagrams connected to real requirements.\n\n## Common Mistakes\n- Using UML only because it looks formal.\n- Mixing multiple diagram types into one picture.\n- Creating diagrams nobody reviews.\n- Using class diagrams as database diagrams.\n\n## Practice Task\nPick one ERP feature and decide which three UML diagrams would explain it best. Write why each diagram is needed.\n\n## Summary\nUML becomes useful when each diagram has a clear audience and purpose.\n";
+    document.getElementById("content").innerHTML = marked.parse(markdown);
+    document.querySelectorAll("pre code.language-mermaid").forEach((block) => {
+      const wrapper = document.createElement("div");
+      wrapper.className = "mermaid";
+      wrapper.textContent = block.textContent;
+      block.closest("pre").replaceWith(wrapper);
+    });
+    mermaid.initialize({ startOnLoad: false });
+    mermaid.run({ nodes: document.querySelectorAll(".mermaid") });
+  </script>
+</body>
+</html>

@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Microservices Architecture — Documentation Viewer</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" />
+  <style>
+    :root {
+      --bg: #0c1012;
+      --surface: #141c1f;
+      --surface2: #1a262b;
+      --border: #2a3d44;
+      --text: #e8edf4;
+      --muted: #8fa3bf;
+      --accent: #14b8a6;
+      --accent2: #2dd4bf;
+      --md: #93c5fd;
+      --warn: #fbbf24;
+      --radius: 10px;
+      --shadow: 0 4px 24px rgba(0,0,0,.35);
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; margin: 0; }
+    body {
+      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .topbar {
+      flex-shrink: 0;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 0.65rem 1rem;
+      box-shadow: var(--shadow);
+      z-index: 10;
+    }
+    .brand { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
+    .brand h1 { margin: 0; font-size: 1.15rem; font-weight: 600; }
+    .brand span { color: var(--muted); font-size: 0.8rem; }
+    .search-wrap { flex: 1; min-width: 200px; max-width: 420px; }
+    .search-wrap input {
+      width: 100%;
+      padding: 0.5rem 0.85rem;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      color: var(--text);
+      font-size: 0.9rem;
+    }
+    .search-wrap input:focus { outline: 2px solid var(--accent); border-color: transparent; }
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-top: 0.65rem;
+      padding-bottom: 0.15rem;
+    }
+    .tab {
+      padding: 0.4rem 0.85rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--bg);
+      color: var(--muted);
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: all .15s;
+      white-space: nowrap;
+    }
+    .tab:hover { color: var(--text); border-color: var(--accent); }
+    .tab.active {
+      background: linear-gradient(135deg, #0d9488, #14b8a6);
+      border-color: transparent;
+      color: #fff;
+      font-weight: 600;
+    }
+    .banner {
+      display: none;
+      background: rgba(251, 191, 36, 0.12);
+      border-bottom: 1px solid rgba(251, 191, 36, 0.35);
+      padding: 0.5rem 1rem;
+      font-size: 0.82rem;
+      color: #fde68a;
+    }
+    .banner.show { display: block; }
+    .banner code { background: rgba(0,0,0,.3); padding: 0.15rem 0.4rem; border-radius: 4px; }
+    .workspace {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      min-height: 0;
+    }
+    @media (max-width: 900px) {
+      .workspace { grid-template-columns: 1fr; }
+      .sidebar { display: none; }
+      .sidebar.open { display: flex; position: fixed; inset: 0; top: 120px; z-index: 20; }
+    }
+    .sidebar {
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+    }
+    .sidebar-head {
+      padding: 0.65rem 0.85rem;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      border-bottom: 1px solid var(--border);
+    }
+    .file-list { flex: 1; overflow-y: auto; padding: 0.35rem; }
+    .file-item {
+      display: block;
+      width: 100%;
+      text-align: left;
+      padding: 0.45rem 0.65rem;
+      border: none;
+      border-radius: 6px;
+      background: transparent;
+      color: var(--muted);
+      font-size: 0.78rem;
+      cursor: pointer;
+      word-break: break-all;
+      line-height: 1.35;
+    }
+    .file-item:hover { background: var(--surface2); color: var(--text); }
+    .file-item.active { background: var(--accent); color: #fff; }
+    .file-item .ext-md { color: var(--md); }
+    .main { display: flex; flex-direction: column; min-height: 0; background: var(--bg); }
+    .panel { display: none; flex: 1; flex-direction: column; min-height: 0; }
+    .panel.active { display: flex; }
+    .content-header {
+      padding: 0.75rem 1.25rem;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface2);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-shrink: 0;
+    }
+    .content-header h2 { margin: 0; font-size: 0.95rem; font-weight: 500; word-break: break-all; }
+    .content-header .badge {
+      font-size: 0.7rem;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      background: var(--border);
+      color: var(--muted);
+    }
+    .content-body { flex: 1; overflow: auto; padding: 1.25rem 1.5rem 2rem; }
+    .content-body pre[class*="language-"] { margin: 0; border-radius: var(--radius); font-size: 0.82rem; }
+    .markdown-body { max-width: 900px; line-height: 1.65; font-size: 0.95rem; }
+    .markdown-body h1, .markdown-body h2, .markdown-body h3 { color: #fff; margin-top: 1.5em; }
+    .markdown-body h1 { font-size: 1.6rem; border-bottom: 1px solid var(--border); padding-bottom: 0.3em; }
+    .markdown-body a { color: var(--md); cursor: pointer; }
+    .markdown-body code { background: var(--surface2); padding: 0.15em 0.35em; border-radius: 4px; font-size: 0.88em; }
+    .markdown-body pre { background: #0a0e14; padding: 1rem; border-radius: var(--radius); overflow-x: auto; }
+    .markdown-body table { border-collapse: collapse; width: 100%; margin: 1em 0; font-size: 0.88rem; }
+    .markdown-body th, .markdown-body td { border: 1px solid var(--border); padding: 0.5rem 0.75rem; }
+    .markdown-body th { background: var(--surface2); }
+    .empty { color: var(--muted); text-align: center; padding: 3rem; }
+    .grid-panel { padding: 1rem 1.25rem 2rem; overflow: auto; flex: 1; }
+    .doc-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 0.85rem;
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem;
+      cursor: pointer;
+      transition: transform .12s, border-color .12s;
+    }
+    .card:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent);
+      box-shadow: var(--shadow);
+    }
+    .card h3 { margin: 0 0 0.35rem; font-size: 0.88rem; font-weight: 600; color: #fff; }
+    .card p { margin: 0; font-size: 0.72rem; color: var(--muted); word-break: break-all; }
+    .card .tags { margin-top: 0.5rem; display: flex; gap: 0.35rem; flex-wrap: wrap; }
+    .tag {
+      font-size: 0.65rem;
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      background: var(--surface2);
+      color: var(--muted);
+    }
+    .tag.part-I { color: #93c5fd; }
+    .tag.part-II { color: #a78bfa; }
+    .tag.part-III { color: #fbbf24; }
+    .tag.part-IV { color: #34d399; }
+    .curriculum {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.82rem;
+      margin-bottom: 1.5rem;
+    }
+    .curriculum th, .curriculum td {
+      border: 1px solid var(--border);
+      padding: 0.55rem 0.7rem;
+      text-align: left;
+    }
+    .curriculum th { background: var(--surface2); color: var(--muted); }
+    .curriculum tr:hover td { background: var(--surface); }
+    .curriculum .btn-link {
+      color: var(--accent);
+      cursor: pointer;
+      text-decoration: underline;
+      border: none;
+      background: none;
+      font: inherit;
+      padding: 0;
+      display: block;
+      text-align: left;
+    }
+    .stats { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+    .stat {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0.85rem 1.1rem;
+      min-width: 100px;
+    }
+    .stat strong { display: block; font-size: 1.4rem; color: var(--accent2); }
+    .stat span { font-size: 0.75rem; color: var(--muted); }
+    .status-pill {
+      font-size: 0.72rem;
+      padding: 0.25rem 0.55rem;
+      border-radius: 999px;
+      background: var(--surface2);
+      color: var(--muted);
+    }
+    .status-pill.ok { background: rgba(45, 212, 191, 0.15); color: var(--accent2); }
+    .status-pill.warn { background: rgba(251, 191, 36, 0.15); color: var(--warn); }
+    .toggle-side {
+      display: none;
+      padding: 0.4rem 0.65rem;
+      font-size: 0.8rem;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      color: var(--text);
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    @media (max-width: 900px) { .toggle-side { display: inline-block; } }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="brand">
+      <div>
+        <h1>Microservices Architecture Learning Hub</h1>
+        <span>Full documentation · <span id="fileCount">—</span> files · Grid + tabs</span>
+        <span class="status-pill" id="statusPill">Checking…</span>
+      </div>
+      <div class="search-wrap">
+        <input type="search" id="search" placeholder="Search all markdown docs…" autocomplete="off" />
+      </div>
+      <button class="toggle-side" id="toggleSide" type="button">Files</button>
+    </div>
+    <div class="tabs" id="mainTabs"></div>
+  </div>
+  <div class="banner" id="banner">
+    <strong>Tip:</strong> Docs load from built-in bundle offline. For live file edits, run
+    <code>.\web\serve.ps1</code> from project folder →
+    <code>http://localhost:8080/web/index.html</code>
+  </div>
+
+  <div class="workspace">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-head" id="sidebarTitle">All files</div>
+      <div class="file-list" id="fileList"></div>
+    </aside>
+
+    <div class="main">
+      <div class="panel active" id="panelViewer">
+        <div class="content-header">
+          <h2 id="viewerTitle">Select a file from the grid or sidebar</h2>
+          <span class="badge" id="viewerBadge">—</span>
+        </div>
+        <div class="content-body" id="viewerBody">
+          <div class="empty" id="welcome">
+            <p><strong>Welcome.</strong> Use tabs above or the <strong>Full grid</strong> tab.</p>
+            <p style="margin-top:1rem;font-size:0.88rem">Dashboard shows the 22-module curriculum. Every markdown file can be opened here.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel" id="panelDashboard">
+        <div class="content-body grid-panel">
+          <div class="stats" id="stats"></div>
+          <h2 style="margin:0 0 1rem;font-size:1.1rem;color:var(--accent2)">Curriculum grid (Modules 00–21)</h2>
+          <table class="curriculum" id="curriculumTable"></table>
+          <h2 style="margin:2rem 0 0.75rem;font-size:1.1rem;color:var(--accent2)">Guides</h2>
+          <table class="curriculum" id="guidesTable"></table>
+        </div>
+      </div>
+
+      <div class="panel" id="panelGrid">
+        <div class="content-body grid-panel">
+          <h2 style="margin:0 0 1rem;font-size:1.1rem">Full documentation grid</h2>
+          <div class="doc-grid" id="docGrid"></div>
+        </div>
+      </div>
+
+      <div class="panel" id="panelPart">
+        <div class="content-body grid-panel">
+          <h2 id="partHeading" style="margin:0 0 0.35rem;font-size:1.15rem;color:var(--accent2)">Part</h2>
+          <p id="partDesc" style="margin:0 0 1rem;color:var(--muted);font-size:0.88rem"></p>
+          <div class="doc-grid" id="partGrid"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="manifest-bundle.js"></script>
+  <script src="content-bundle.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.6/marked.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+  <script>
+    let manifest = [];
+    let loadSource = 'bundle';
+    let activeTab = 'dashboard';
+    let currentPath = null;
+
+    const TAB_DEFS = [
+      { id: 'dashboard', label: 'Dashboard' },
+      { id: 'grid', label: 'Full grid' },
+      { id: 'all', label: 'All files' },
+      { id: 'I', label: 'Part I' },
+      { id: 'II', label: 'Part II' },
+      { id: 'III', label: 'Part III' },
+      { id: 'IV', label: 'Part IV' },
+      { id: 'docs', label: 'Docs' },
+      { id: 'exercises', label: 'Exercises' },
+      { id: 'solutions', label: 'Solutions' },
+      { id: 'appendices', label: 'Appendices' }
+    ];
+
+    const PART_INFO = {
+      I: { title: 'Part I — Foundations', desc: 'Modules 00–04: Distributed systems, intro, monolith vs microservices, DDD, APIs', mods: ['00','01','02','03','04'] },
+      II: { title: 'Part II — Core Architecture', desc: 'Modules 05–10: Communication, data, resilience, scalability, performance, complexity', mods: ['05','06','07','08','09','10'] },
+      III: { title: 'Part III — Production', desc: 'Modules 11–15: Security, observability, deployment, flexibility, testing', mods: ['11','12','13','14','15'] },
+      IV: { title: 'Part IV — Advanced', desc: 'Modules 16–21: Patterns, mesh, multi-region, capacity, decisions, capstone', mods: ['16','17','18','19','20','21'] }
+    };
+
+    const CURRICULUM = [
+      { mod: '00', title: 'Distributed Systems', doc: 'docs/part-01-foundations/00-distributed-systems-basics.md', exercise: 'exercises/module-00.md', solution: 'exercises/solutions/module-00.md' },
+      { mod: '01', title: 'Introduction', doc: 'docs/part-01-foundations/01-introduction.md', exercise: 'exercises/module-01.md', solution: 'exercises/solutions/module-01.md' },
+      { mod: '02', title: 'Monolith vs Microservices', doc: 'docs/part-01-foundations/02-monolith-vs-microservices.md', exercise: 'exercises/module-02.md', solution: 'exercises/solutions/module-02.md' },
+      { mod: '03', title: 'Core Principles & DDD', doc: 'docs/part-01-foundations/03-core-principles.md', exercise: 'exercises/module-03.md', solution: 'exercises/solutions/module-03.md' },
+      { mod: '04', title: 'API & Networking', doc: 'docs/part-01-foundations/04-api-networking-fundamentals.md', exercise: 'exercises/module-04.md', solution: 'exercises/solutions/module-04.md' },
+      { mod: '05', title: 'Communication', doc: 'docs/part-02-core-architecture/05-communication-patterns.md', exercise: 'exercises/module-05.md', solution: 'exercises/solutions/module-05.md' },
+      { mod: '06', title: 'Data Management', doc: 'docs/part-02-core-architecture/06-data-management.md', exercise: 'exercises/module-06.md', solution: 'exercises/solutions/module-06.md' },
+      { mod: '07', title: 'Reliability', doc: 'docs/part-02-core-architecture/07-reliability-and-resilience.md', exercise: 'exercises/module-07.md', solution: 'exercises/solutions/module-07.md' },
+      { mod: '08', title: 'Scalability', doc: 'docs/part-02-core-architecture/08-scalability-patterns.md', exercise: 'exercises/module-08.md', solution: 'exercises/solutions/module-08.md' },
+      { mod: '09', title: 'Performance', doc: 'docs/part-02-core-architecture/09-performance-engineering.md', exercise: 'exercises/module-09.md', solution: 'exercises/solutions/module-09.md' },
+      { mod: '10', title: 'Time Complexity', doc: 'docs/part-02-core-architecture/10-time-complexity.md', exercise: 'exercises/module-10.md', solution: 'exercises/solutions/module-10.md' },
+      { mod: '11', title: 'Security', doc: 'docs/part-03-production/11-security.md', exercise: 'exercises/module-11.md', solution: 'exercises/solutions/module-11.md' },
+      { mod: '12', title: 'Observability', doc: 'docs/part-03-production/12-observability.md', exercise: 'exercises/module-12.md', solution: 'exercises/solutions/module-12.md' },
+      { mod: '13', title: 'Deployment', doc: 'docs/part-03-production/13-deployment-and-devops.md', exercise: 'exercises/module-13.md', solution: 'exercises/solutions/module-13.md' },
+      { mod: '14', title: 'Flexibility', doc: 'docs/part-03-production/14-flexibility-and-evolvability.md', exercise: 'exercises/module-14.md', solution: 'exercises/solutions/module-14.md' },
+      { mod: '15', title: 'Testing', doc: 'docs/part-03-production/15-testing-and-contracts.md', exercise: 'exercises/module-15.md', solution: 'exercises/solutions/module-15.md' },
+      { mod: '16', title: 'Advanced Patterns', doc: 'docs/part-04-advanced/16-advanced-patterns.md', exercise: 'exercises/module-16.md', solution: 'exercises/solutions/module-16.md' },
+      { mod: '17', title: 'Gateway & Mesh', doc: 'docs/part-04-advanced/17-gateway-and-service-mesh.md', exercise: 'exercises/module-17.md', solution: 'exercises/solutions/module-17.md' },
+      { mod: '18', title: 'Multi-Region HA', doc: 'docs/part-04-advanced/18-multi-region-ha-dr.md', exercise: 'exercises/module-18.md', solution: 'exercises/solutions/module-18.md' },
+      { mod: '19', title: 'Capacity & Cost', doc: 'docs/part-04-advanced/19-capacity-planning-and-cost.md', exercise: 'exercises/module-19.md', solution: 'exercises/solutions/module-19.md' },
+      { mod: '20', title: 'Trade-offs', doc: 'docs/part-04-advanced/20-tradeoffs-and-decision-framework.md', exercise: 'exercises/module-20.md', solution: 'exercises/solutions/module-20.md' },
+      { mod: '21', title: 'Capstone', doc: 'docs/part-04-advanced/21-capstone-architecture-projects.md', exercise: 'exercises/module-21.md', solution: 'exercises/solutions/module-21.md' }
+    ];
+
+    const GUIDES = [
+      { title: 'Data Flow & System Design', desc: 'Context DFD, Level 1, sync/async sequences, deployment', doc: 'docs/DATA-FLOW-AND-SYSTEM-DESIGN.md', index: 'docs/appendices/E-data-flow-and-system-design.md' }
+    ];
+
+    function partForPath(path) {
+      const p = path.replace(/\\/g, '/');
+      if (/part-01-foundations|\/00-|\/01-|\/02-|\/03-|\/04-|module-0[0-4]|module-00/i.test(p)) return 'I';
+      if (/part-02-core-architecture|\/05-|\/06-|\/07-|\/08-|\/09-|\/10-|module-0[5-9]|module-10/i.test(p)) return 'II';
+      if (/part-03-production|\/11-|\/12-|\/13-|\/14-|\/15-|module-1[1-5]/i.test(p)) return 'III';
+      if (/part-04-advanced|\/16-|\/17-|\/18-|\/19-|\/20-|\/21-|module-1[6-9]|module-2[01]|capstone/i.test(p)) return 'IV';
+      return 'all';
+    }
+
+    function categoryForPath(path) {
+      const p = path.replace(/\\/g, '/');
+      if (p.startsWith('docs/appendices/')) return 'appendices';
+      if (p.startsWith('exercises/solutions/')) return 'solutions';
+      if (p.startsWith('exercises/')) return 'exercises';
+      if (p.startsWith('docs/')) return 'docs';
+      if (p.startsWith('theory/')) return 'theory';
+      return 'root';
+    }
+
+    function filterFiles(tab, query) {
+      let list = manifest;
+      if (tab === 'docs') list = list.filter(f => f.category === 'docs' || (f.category === 'root' && f.ext === '.md'));
+      else if (tab === 'exercises') list = list.filter(f => f.category === 'exercises');
+      else if (tab === 'solutions') list = list.filter(f => f.category === 'solutions');
+      else if (tab === 'appendices') list = list.filter(f => f.category === 'appendices');
+      else if (['I','II','III','IV'].includes(tab)) {
+        list = list.filter(f => (f.part === tab) || (f.part === 'all' && partForPath(f.path) === tab));
+      }
+      if (query) {
+        const q = query.toLowerCase();
+        list = list.filter(f => f.path.toLowerCase().includes(q) || f.title.toLowerCase().includes(q));
+      }
+      return list.sort((a, b) => a.path.localeCompare(b.path));
+    }
+
+    function renderTabs() {
+      const el = document.getElementById('mainTabs');
+      el.innerHTML = '';
+      TAB_DEFS.forEach(t => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'tab' + (t.id === activeTab ? ' active' : '');
+        btn.textContent = t.label;
+        btn.onclick = () => setTab(t.id);
+        el.appendChild(btn);
+      });
+    }
+
+    function isPartTab(id) { return ['I','II','III','IV'].includes(id); }
+
+    function renderPartPanel(partId) {
+      const info = PART_INFO[partId];
+      const files = filterFiles(partId, document.getElementById('search').value);
+      document.getElementById('partHeading').textContent = info.title;
+      document.getElementById('partDesc').textContent = info.desc + ' · ' + files.length + ' files — click a card to open';
+      const grid = document.getElementById('partGrid');
+      grid.innerHTML = '';
+      if (!files.length) {
+        grid.innerHTML = '<p class="empty">No files tagged for this part. Run web/rebuild-all.ps1</p>';
+        return;
+      }
+      files.forEach(f => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `<h3>${f.name}</h3><p>${f.path}</p><div class="tags"><span class="tag">${f.category}</span></div>`;
+        card.onclick = () => loadFile(f.path);
+        grid.appendChild(card);
+      });
+    }
+
+    function setTab(id) {
+      activeTab = id;
+      renderTabs();
+      const part = isPartTab(id);
+      document.getElementById('panelDashboard').classList.toggle('active', id === 'dashboard');
+      document.getElementById('panelGrid').classList.toggle('active', id === 'grid');
+      document.getElementById('panelPart').classList.toggle('active', part);
+      document.getElementById('panelViewer').classList.toggle('active', !part && id !== 'dashboard' && id !== 'grid');
+
+      if (id === 'grid') renderGrid(filterFiles('all', document.getElementById('search').value));
+      else if (part) {
+        renderPartPanel(id);
+        renderSidebar(filterFiles(id, document.getElementById('search').value));
+        document.getElementById('sidebarTitle').textContent = TAB_DEFS.find(t => t.id === id)?.label || 'Files';
+      } else if (id !== 'dashboard') {
+        renderSidebar(filterFiles(id, document.getElementById('search').value));
+        document.getElementById('sidebarTitle').textContent = TAB_DEFS.find(t => t.id === id)?.label || 'Files';
+      }
+    }
+
+    function renderSidebar(files) {
+      const list = document.getElementById('fileList');
+      list.innerHTML = '';
+      files.forEach(f => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'file-item' + (f.path === currentPath ? ' active' : '');
+        btn.innerHTML = `<span class="ext-md">MD</span> ${f.name}`;
+        btn.onclick = () => loadFile(f.path);
+        list.appendChild(btn);
+      });
+    }
+
+    function renderGrid(files) {
+      const grid = document.getElementById('docGrid');
+      grid.innerHTML = '';
+      files.forEach(f => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+          <h3>${f.name}</h3>
+          <p>${f.path}</p>
+          <div class="tags">
+            <span class="tag">${f.category}</span>
+            ${f.part !== 'all' ? `<span class="tag part-${f.part}">Part ${f.part}</span>` : ''}
+          </div>`;
+        card.onclick = () => { setTab('all'); loadFile(f.path); };
+        grid.appendChild(card);
+      });
+    }
+
+    function renderStats() {
+      const md = manifest.filter(f => f.ext === '.md').length;
+      const exercises = manifest.filter(f => f.category === 'exercises').length;
+      document.getElementById('stats').innerHTML = `
+        <div class="stat"><strong>${manifest.length}</strong><span>Total files</span></div>
+        <div class="stat"><strong>${md}</strong><span>Markdown docs</span></div>
+        <div class="stat"><strong>${exercises}</strong><span>Exercise sets</span></div>
+        <div class="stat"><strong>22</strong><span>Modules</span></div>`;
+    }
+
+    function renderCurriculum() {
+      const tb = document.getElementById('curriculumTable');
+      let html = '<thead><tr><th>Mod</th><th>Topic</th><th>Documentation</th><th>Exercises</th><th>Solutions</th></tr></thead><tbody>';
+      CURRICULUM.forEach(r => {
+        html += `<tr>
+          <td>${r.mod}</td><td>${r.title}</td>
+          <td><button type="button" class="btn-link" data-path="${r.doc}">${r.doc.split('/').pop()}</button></td>
+          <td><button type="button" class="btn-link" data-path="${r.exercise}">${r.exercise.split('/').pop()}</button></td>
+          <td><button type="button" class="btn-link" data-path="${r.solution}">${r.solution.split('/').pop()}</button></td>
+        </tr>`;
+      });
+      html += '</tbody>';
+      tb.innerHTML = html;
+      tb.querySelectorAll('.btn-link').forEach(btn => {
+        btn.onclick = () => loadFile(btn.dataset.path);
+      });
+    }
+
+    function renderGuides() {
+      const tb = document.getElementById('guidesTable');
+      let html = '<thead><tr><th>Guide</th><th>Description</th><th>Full guide</th><th>Index</th></tr></thead><tbody>';
+      GUIDES.forEach(g => {
+        html += `<tr>
+          <td>${g.title}</td><td>${g.desc}</td>
+          <td><button type="button" class="btn-link" data-path="${g.doc}">${g.doc.split('/').pop()}</button></td>
+          <td><button type="button" class="btn-link" data-path="${g.index}">${g.index.split('/').pop()}</button></td>
+        </tr>`;
+      });
+      html += '</tbody>';
+      tb.innerHTML = html;
+      tb.querySelectorAll('.btn-link').forEach(btn => {
+        btn.onclick = () => loadFile(btn.dataset.path);
+      });
+    }
+
+    function resolveMarkdownPath(href, fromPath) {
+      if (!href || href.startsWith('http') || href.startsWith('#')) return null;
+      const baseParts = fromPath.split('/').slice(0, -1);
+      const parts = href.split('/');
+      for (const p of parts) {
+        if (p === '..') baseParts.pop();
+        else if (p !== '.' && p) baseParts.push(p);
+      }
+      return baseParts.join('/');
+    }
+
+    function wireMarkdownLinks(fromPath) {
+      document.getElementById('viewerBody').querySelectorAll('.markdown-body a[href]').forEach(a => {
+        const href = a.getAttribute('href');
+        const resolved = resolveMarkdownPath(href, fromPath);
+        if (resolved && resolved.endsWith('.md') && (CONTENT_BUNDLE?.[resolved] || manifest.some(f => f.path === resolved))) {
+          a.onclick = (e) => { e.preventDefault(); loadFile(resolved); };
+        }
+      });
+    }
+
+    function fetchUrls(path) {
+      const p = path.replace(/^\//, '');
+      return [...new Set(['/' + p, '../' + p])];
+    }
+
+    async function readFileContent(path) {
+      if (window.CONTENT_BUNDLE && CONTENT_BUNDLE[path]) {
+        loadSource = 'bundle';
+        return CONTENT_BUNDLE[path];
+      }
+      let lastErr = null;
+      for (const url of fetchUrls(path)) {
+        try {
+          const res = await fetch(url);
+          if (!res.ok) { lastErr = new Error(res.status + ' ' + url); continue; }
+          loadSource = 'server';
+          return await res.text();
+        } catch (e) { lastErr = e; }
+      }
+      throw lastErr || new Error('Failed to fetch');
+    }
+
+    function renderFileContent(path, text) {
+      const body = document.getElementById('viewerBody');
+      marked.setOptions({ gfm: true, breaks: true });
+      body.innerHTML = `<div class="markdown-body">${marked.parse(text)}</div>`;
+      body.querySelectorAll('pre code').forEach(block => {
+        if (!block.className) block.className = 'language-markdown';
+        Prism.highlightElement(block);
+      });
+      wireMarkdownLinks(path);
+      const badge = document.getElementById('viewerBadge');
+      const item = manifest.find(f => f.path === path);
+      badge.textContent = (item ? `${item.category} · Part ${item.part} · ` : '') + (loadSource === 'bundle' ? 'offline bundle' : 'live server');
+    }
+
+    async function loadFile(path) {
+      currentPath = path;
+      const item = manifest.find(f => f.path === path);
+      document.getElementById('viewerTitle').textContent = path;
+      document.getElementById('viewerBadge').textContent = item ? `${item.category} · Part ${item.part}` : '';
+      document.getElementById('welcome')?.remove();
+      const body = document.getElementById('viewerBody');
+      body.innerHTML = '<p class="empty">Loading…</p>';
+      if (activeTab === 'dashboard' || activeTab === 'grid') setTab('all');
+      else if (isPartTab(activeTab)) renderPartPanel(activeTab);
+      renderSidebar(filterFiles(activeTab, document.getElementById('search').value));
+
+      try {
+        const text = await readFileContent(path);
+        renderFileContent(path, text);
+        if (loadSource === 'server') document.getElementById('banner').classList.remove('show');
+      } catch (e) {
+        document.getElementById('banner').classList.add('show');
+        body.innerHTML = `<div class="empty"><p>Could not load file.</p><p style="font-size:0.85rem">${escapeHtml(String(e.message || e))}</p><p>Run <code>web\\rebuild-all.ps1</code> or <code>web\\serve.bat</code>.</p></div>`;
+      }
+    }
+
+    function escapeHtml(s) {
+      return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    }
+
+    document.getElementById('search').addEventListener('input', () => {
+      const q = document.getElementById('search').value;
+      if (activeTab === 'grid') renderGrid(filterFiles('all', q));
+      else if (isPartTab(activeTab)) {
+        renderPartPanel(activeTab);
+        renderSidebar(filterFiles(activeTab, q));
+      } else if (activeTab !== 'dashboard') renderSidebar(filterFiles(activeTab, q));
+    });
+
+    document.getElementById('toggleSide').onclick = () => {
+      document.getElementById('sidebar').classList.toggle('open');
+    };
+
+    function manifestFromBundle() {
+      if (!window.CONTENT_BUNDLE) return [];
+      return Object.keys(CONTENT_BUNDLE).sort().map(path => ({
+        path,
+        name: path.split('/').pop(),
+        ext: '.md',
+        category: categoryForPath(path),
+        part: partForPath(path),
+        title: path.split('/').pop().replace(/\.[^.]+$/, '')
+      }));
+    }
+
+    async function loadManifest() {
+      if (window.FILES_MANIFEST && Array.isArray(FILES_MANIFEST) && FILES_MANIFEST.length) {
+        return FILES_MANIFEST;
+      }
+      for (const url of ['files-manifest.json', '/web/files-manifest.json']) {
+        try {
+          const res = await fetch(url);
+          if (res.ok) return await res.json();
+        } catch (_) {}
+      }
+      return manifestFromBundle();
+    }
+
+    function setStatus(ok, msg) {
+      const pill = document.getElementById('statusPill');
+      pill.textContent = msg;
+      pill.className = 'status-pill ' + (ok ? 'ok' : 'warn');
+    }
+
+    async function init() {
+      const bundleOk = window.CONTENT_BUNDLE && Object.keys(CONTENT_BUNDLE).length > 0;
+      manifest = await loadManifest();
+      document.getElementById('fileCount').textContent = manifest.length || (bundleOk ? Object.keys(CONTENT_BUNDLE).length : '0');
+
+      if (bundleOk) {
+        setStatus(true, 'Offline bundle ready');
+        document.getElementById('banner').classList.remove('show');
+      } else if (!manifest.length) {
+        setStatus(false, 'Bundle missing — run rebuild-all.ps1');
+        document.getElementById('banner').classList.add('show');
+      } else {
+        setStatus(true, 'Server mode');
+      }
+
+      renderTabs();
+      renderStats();
+      renderCurriculum();
+      renderGuides();
+      renderGrid(manifest);
+      renderSidebar(manifest);
+      setTab('dashboard');
+    }
+    init();
+  </script>
+</body>
+</html>

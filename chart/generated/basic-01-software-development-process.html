@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Software Development Process</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/theme.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <main class="single-page">
+    <a class="button" href="../index.html">Back to Library</a>
+    <article id="content" class="markdown-body"></article>
+  </main>
+  <script>
+    const markdown = "# Software Development Process\n\n## Learning Objective\nBy the end of this lesson, you will understand how a software idea becomes a tested, deployed, and maintained application.\n\n## What is Software Development Process?\nThe software development process is the organized path a team follows from business need to working software. It includes discovery, requirement analysis, design, development, testing, deployment, and maintenance.\n\n## Why it is important?\nERP systems touch many departments. If HR, Finance, Inventory, and Sales do not agree on requirements before development, one change can break payroll, stock valuation, invoices, or reports.\n\n## ERP Example\nA company wants automatic overtime calculation. The team must confirm attendance rules, approval rules, payroll impact, test cases, report changes, and deployment timing before releasing it.\n\n## Step-by-step Explanation\n1. Collect the business problem and expected outcome.\n2. Write functional requirements and acceptance criteria.\n3. Design process flow, data model, API contracts, and UI behavior.\n4. Develop the feature in small reviewable parts.\n5. Test normal cases, edge cases, permissions, and reports.\n6. Deploy with rollback and monitoring plan.\n\n## Diagram\n\n```mermaid\nflowchart LR\n    A[Business Need] --> B[Requirement Analysis]\n    B --> C[Design Documents]\n    C --> D[Development]\n    D --> E[Testing]\n    E --> F[Deployment]\n    F --> G[Maintenance]\n```\n\n## Key Points\n- Requirements explain what to build.\n- Design explains how the solution will work.\n- Testing proves business rules are correct.\n- Maintenance handles change after release.\n\n## Common Mistakes\n- Starting development before requirements are approved.\n- Ignoring edge cases such as holidays, late approvals, or missing data.\n- Deploying ERP changes without user communication.\n- Treating documentation as optional.\n\n## Practice Task\nChoose a feature such as leave approval or sales invoice posting. Write a mini SDLC plan with requirement, design, build, test, deployment, and support activities.\n\n## Summary\nA strong development process reduces confusion and protects ERP workflows from accidental damage.\n";
+    document.getElementById("content").innerHTML = marked.parse(markdown);
+    document.querySelectorAll("pre code.language-mermaid").forEach((block) => {
+      const wrapper = document.createElement("div");
+      wrapper.className = "mermaid";
+      wrapper.textContent = block.textContent;
+      block.closest("pre").replaceWith(wrapper);
+    });
+    mermaid.initialize({ startOnLoad: false });
+    mermaid.run({ nodes: document.querySelectorAll(".mermaid") });
+  </script>
+</body>
+</html>
