@@ -1,32 +1,134 @@
 [
   {
     "phase": 1,
-    "title": "Basic Process Documentation",
-    "goal": "Learn how to describe a business problem before code is written. Start with SDLC, flow charts, DFD, database basics, ERD, use cases, and API basics.",
-    "outcomes": ["write requirement notes", "draw simple process flow", "identify actors and data", "explain basic API request"]
+    "title": "Software Design Foundations",
+    "level": "Beginner",
+    "duration": "1 week",
+    "goal": "Build the mindset and vocabulary needed to describe software before writing code.",
+    "topics": ["SDLC", "requirements", "stakeholders", "functional requirements", "non-functional requirements", "assumptions", "constraints", "tradeoffs"],
+    "practice": ["write a one-page problem statement", "separate functional and non-functional requirements", "list assumptions and risks"],
+    "outcomes": ["explain the software design process", "write requirement notes", "identify users and business goals"],
+    "deliverables": ["problem statement", "requirement checklist", "scope and non-scope list"]
   },
   {
     "phase": 2,
-    "title": "Intermediate Modeling",
-    "goal": "Convert business understanding into developer-friendly models. Study UML, sequence diagrams, class diagrams, component diagrams, REST API design, relationships, and clean architecture.",
-    "outcomes": ["model message order", "design domain classes", "separate modules", "document REST contracts"]
+    "title": "Analysis and Use Case Modeling",
+    "level": "Beginner to Intermediate",
+    "duration": "1 week",
+    "goal": "Understand the system boundary, actors, business goals, and user interactions.",
+    "topics": ["analysis", "actors", "system boundary", "use case diagram", "use case description", "acceptance criteria", "business rules"],
+    "practice": ["draw a use case diagram", "write detailed use case flows", "document success and failure paths"],
+    "outcomes": ["identify actors", "write use case descriptions", "connect use cases to business rules"],
+    "deliverables": ["use case diagram", "use case table", "business rule list"]
   },
   {
     "phase": 3,
-    "title": "Advanced Architecture",
-    "goal": "Move from feature documentation to architecture decisions. Learn HLD, LLD, system design, modular monolith, microservices, event-driven design, scalability, and performance.",
-    "outcomes": ["write HLD", "write LLD", "compare architecture choices", "plan scale and reliability"]
+    "title": "Workflow and Behavior Diagrams",
+    "level": "Intermediate",
+    "duration": "1 week",
+    "goal": "Model how work moves through the system and how important objects change state.",
+    "topics": ["flow chart", "activity diagram", "state diagram", "decision branches", "approval workflows", "failure paths", "audit points"],
+    "practice": ["draw an activity diagram for one workflow", "draw a state diagram for one entity", "add failure and rollback paths"],
+    "outcomes": ["model business workflows", "model object lifecycles", "find missing validations and states"],
+    "deliverables": ["activity diagram", "state diagram", "workflow review notes"]
   },
   {
     "phase": 4,
-    "title": "Enterprise ERP Architecture",
-    "goal": "Understand ERP as a connected enterprise platform. Study module ownership, ERP data flow, deployment architecture, security architecture, and DevOps CI/CD.",
-    "outcomes": ["map ERP modules", "trace transaction data", "design deployment view", "define security and release process"]
+    "title": "Database and Data Modeling",
+    "level": "Intermediate",
+    "duration": "2 weeks",
+    "goal": "Design reliable data models using entities, relationships, schemas, keys, constraints, and normalization.",
+    "topics": ["database basics", "ERD", "relationship diagram", "database schema", "normalization", "denormalization", "primary key", "foreign key", "indexes", "transactions", "migration planning"],
+    "practice": ["create an ERD", "write schema for core tables", "normalize a bad table design", "choose indexes for common queries"],
+    "outcomes": ["design entities and relationships", "write a basic schema", "explain normalization and denormalization tradeoffs"],
+    "deliverables": ["ERD", "relationship diagram", "database schema", "normalization notes", "index plan"]
   },
   {
     "phase": 5,
-    "title": "Capstone Documentation Portfolio",
-    "goal": "Create one complete documentary pack for a real ERP module such as HR, Payroll, Inventory, Sales, Procurement, or Finance.",
-    "outcomes": ["BRD and SRS", "flow chart and DFD", "ERD and API contract", "HLD and LLD", "deployment and security checklist"]
+    "title": "Data Flow Design",
+    "level": "Intermediate",
+    "duration": "1 week",
+    "goal": "Show how data enters, moves through, is stored by, and leaves the system.",
+    "topics": ["DFD context", "DFD Level 0", "DFD Level 1", "external entities", "processes", "data stores", "data flow balancing", "privacy boundaries"],
+    "practice": ["draw a context diagram", "break the system into Level 0 processes", "expand one critical process into Level 1"],
+    "outcomes": ["trace data movement", "identify missing data stores", "validate data boundaries"],
+    "deliverables": ["DFD Context", "DFD Level 0", "DFD Level 1", "data flow review checklist"]
+  },
+  {
+    "phase": 6,
+    "title": "Interaction, API, and Integration Design",
+    "level": "Intermediate to Advanced",
+    "duration": "2 weeks",
+    "goal": "Design how users, modules, services, databases, and external systems communicate at runtime.",
+    "topics": ["sequence diagram", "REST API design", "request and response contracts", "status codes", "error format", "webhooks", "idempotency", "timeouts", "retries", "synchronous vs asynchronous communication"],
+    "practice": ["draw sequence diagrams for success and failure", "write API contracts", "define retry and idempotency rules"],
+    "outcomes": ["model runtime communication", "design safe APIs", "handle external integration failure"],
+    "deliverables": ["sequence diagram", "API contract", "error code table", "integration checklist"]
+  },
+  {
+    "phase": 7,
+    "title": "High Level Design",
+    "level": "Advanced",
+    "duration": "2 weeks",
+    "goal": "Create HLD documents that explain modules, ownership, integrations, data stores, scale, reliability, security, and observability.",
+    "topics": ["HLD", "system design", "module boundaries", "component diagram", "data ownership", "external integrations", "capacity planning", "scalability", "reliability", "security", "observability"],
+    "practice": ["write a full HLD", "draw a system architecture diagram", "document alternatives and tradeoffs", "review non-functional requirements"],
+    "outcomes": ["design a system at architecture level", "explain major decisions", "connect requirements to components"],
+    "deliverables": ["HLD document", "architecture diagram", "component responsibility table", "risk and tradeoff list"]
+  },
+  {
+    "phase": 8,
+    "title": "Low Level Design",
+    "level": "Advanced",
+    "duration": "2 weeks",
+    "goal": "Translate HLD into implementation-ready classes, interfaces, services, validation, transactions, and tests.",
+    "topics": ["LLD", "class diagram", "service layer", "repository pattern", "controller pattern", "interfaces", "validation", "transaction boundary", "error handling", "unit tests", "integration tests"],
+    "practice": ["create an LLD for one module", "draw class and flow diagrams", "define errors and transaction boundaries", "write test scenarios"],
+    "outcomes": ["prepare implementation-level design", "separate responsibilities", "design testable modules"],
+    "deliverables": ["LLD document", "class diagram", "method responsibility table", "test case list"]
+  },
+  {
+    "phase": 9,
+    "title": "Architecture Styles and Tradeoffs",
+    "level": "Advanced to Senior",
+    "duration": "2 weeks",
+    "goal": "Learn when to use monolith, modular monolith, microservices, event-driven architecture, and clean architecture.",
+    "topics": ["monolith diagram", "modular monolith diagram", "microservice diagram", "event driven diagram", "clean architecture diagram", "hexagonal architecture", "layered architecture", "service boundaries", "eventual consistency"],
+    "practice": ["draw the same system as three architecture styles", "compare benefits and risks", "choose a migration path"],
+    "outcomes": ["choose architecture based on context", "explain tradeoffs", "avoid premature microservices"],
+    "deliverables": ["architecture comparison", "decision record", "migration path", "service boundary map"]
+  },
+  {
+    "phase": 10,
+    "title": "Deployment and Infrastructure Design",
+    "level": "Senior",
+    "duration": "2 weeks",
+    "goal": "Design how software runs in production across servers, containers, networks, gateways, load balancers, and cloud infrastructure.",
+    "topics": ["deployment diagram", "infrastructure diagram", "network diagram", "load balancer diagram", "API gateway diagram", "Docker architecture diagram", "Kubernetes architecture diagram", "environments", "secrets", "health checks", "rollback"],
+    "practice": ["draw a production deployment", "separate public and private network zones", "design load balancing and gateway routing", "compare Docker and Kubernetes deployment"],
+    "outcomes": ["explain production runtime architecture", "secure network boundaries", "plan scalable deployment"],
+    "deliverables": ["deployment diagram", "network diagram", "load balancer diagram", "API gateway diagram", "Docker and Kubernetes diagrams"]
+  },
+  {
+    "phase": 11,
+    "title": "DevOps, Security, and Operations",
+    "level": "Senior",
+    "duration": "2 weeks",
+    "goal": "Design the release, security, monitoring, and operations process needed for maintainable production software.",
+    "topics": ["CI/CD pipeline diagram", "build pipeline", "test gates", "security scanning", "environment promotion", "blue-green deployment", "canary release", "logging", "metrics", "tracing", "alerts", "runbooks"],
+    "practice": ["draw a CI/CD pipeline", "define release gates", "create an observability checklist", "write rollback steps"],
+    "outcomes": ["design safe releases", "monitor production health", "plan incident response"],
+    "deliverables": ["CI/CD pipeline diagram", "release checklist", "monitoring dashboard plan", "rollback runbook"]
+  },
+  {
+    "phase": 12,
+    "title": "Senior Portfolio Capstone",
+    "level": "Senior",
+    "duration": "3 weeks",
+    "goal": "Create one complete senior-level software design package from requirements to production architecture.",
+    "topics": ["capstone design", "complete documentation", "design review", "portfolio presentation", "architecture decision records", "final tradeoff analysis"],
+    "practice": ["choose one real system", "produce every major diagram", "write HLD and LLD", "review the design as a senior developer"],
+    "outcomes": ["build a complete software design portfolio", "explain design decisions confidently", "prepare for senior design reviews and interviews"],
+    "deliverables": ["complete system design document", "all diagram package", "HLD", "LLD", "deployment plan", "review checklist"]
   }
 ]

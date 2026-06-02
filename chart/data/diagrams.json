@@ -4,5 +4,10 @@
   {"title":"ERD Examples","type":"ERD","path":"docs/diagrams/erd-examples.md","description":"Database relationships for HR, payroll, sales, and inventory."},
   {"title":"Sequence Diagram Examples","type":"Sequence","path":"docs/diagrams/sequence-diagram-examples.md","description":"Message order for approvals and integrations."},
   {"title":"Deployment Diagram Examples","type":"Deployment","path":"docs/diagrams/deployment-diagram-examples.md","description":"Static, cloud, and enterprise deployment patterns."},
-  {"title":"Microservice Diagram Examples","type":"Microservice","path":"docs/diagrams/microservice-diagram-examples.md","description":"Service ownership, events, APIs, and reporting integration."}
+  {"title":"Microservice Diagram Examples","type":"Microservice","path":"docs/diagrams/microservice-diagram-examples.md","description":"Service ownership, events, APIs, and reporting integration."},
+  {"title":"Senior DFD Context Level 0 Level 1","type":"Senior System Design","path":"docs/senior-system-design/05-dfd-context-level0-level1.md","description":"Deep reference for DFD context, Level 0, and Level 1 data movement diagrams."},
+  {"title":"Senior HLD and Architecture","type":"Senior System Design","path":"docs/senior-system-design/07-hld-system-design-and-architecture.md","description":"High level design diagrams for modules, ownership, scalability, reliability, security, and observability."},
+  {"title":"Senior LLD Class and Flow","type":"Senior System Design","path":"docs/senior-system-design/08-lld-low-level-design.md","description":"Low level design diagrams for classes, services, validation, transactions, and implementation behavior."},
+  {"title":"Architecture Styles Comparison","type":"Architecture","path":"docs/senior-system-design/09-architecture-styles-monolith-modular-microservice-event-clean.md","description":"Monolith, modular monolith, microservice, event-driven, and clean architecture diagrams."},
+  {"title":"Infrastructure Docker Kubernetes CI CD","type":"Infrastructure","path":"docs/senior-system-design/10-deployment-infrastructure-network-devops.md","description":"Deployment, network, load balancer, API gateway, Docker, Kubernetes, and CI/CD diagrams."}
 ]

@@ -13,13 +13,15 @@ async function getJson(path) {
 }
 
 function titleCase(value) {
-  return value.replace("-", " ").replace(/\b\w/g, (letter) => letter.toUpperCase());
+  return value.replaceAll("-", " ").replace(/\b\w/g, (letter) => letter.toUpperCase());
 }
 
 async function setupHome() {
   const tree = document.querySelector("#lessonTree");
   const cards = document.querySelector("#levelCards");
   const count = document.querySelector("#lessonCount");
+  const levelCount = document.querySelector("#levelCount");
+  const diagramPackCount = document.querySelector("#diagramPackCount");
   if (!tree && !cards) return;
 
   const lessons = await getJson("data/lessons.json");
@@ -27,6 +29,11 @@ async function setupHome() {
   if (count) count.textContent = lessons.length;
 
   const levels = [...new Set(lessons.map((lesson) => lesson.level))];
+  if (levelCount) levelCount.textContent = levels.length;
+  if (diagramPackCount) {
+    const diagrams = await getJson("data/diagrams.json");
+    diagramPackCount.textContent = diagrams.length;
+  }
 
   function closeSidebar() {
     document.querySelector("[data-sidebar]")?.classList.remove("open");
@@ -135,12 +142,32 @@ async function setupRoadmap() {
   const timeline = document.querySelector("#roadmapTimeline");
   if (!timeline) return;
   const roadmap = await getJson("data/roadmap.json");
+
+  function renderList(title, items = []) {
+    if (!items.length) return "";
+    return `
+      <div class="roadmap-block">
+        <h3>${title}</h3>
+        <ul>${items.map((item) => `<li>${item}</li>`).join("")}</ul>
+      </div>
+    `;
+  }
+
   timeline.innerHTML = roadmap.map((item) => `
     <article class="timeline-item">
-      <h2>${item.phase}. ${item.title}</h2>
+      <div class="roadmap-meta">
+        <span class="tag">Phase ${item.phase}</span>
+        ${item.level ? `<span class="tag">${item.level}</span>` : ""}
+        ${item.duration ? `<span class="tag">${item.duration}</span>` : ""}
+      </div>
+      <h2>${item.title}</h2>
       <p>${item.goal}</p>
-      <p><strong>Build evidence:</strong> ${item.outcomes.join(", ")}.</p>
-      <div class="tag-row">${item.outcomes.map((outcome) => `<span class="tag">${outcome}</span>`).join("")}</div>
+      <div class="roadmap-grid">
+        ${renderList("Learn", item.topics)}
+        ${renderList("Practice", item.practice)}
+        ${renderList("Outcomes", item.outcomes)}
+        ${renderList("Deliverables", item.deliverables)}
+      </div>
     </article>
   `).join("");
 }

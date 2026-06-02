@@ -354,6 +354,39 @@ h3 {
   margin: 0 0 8px;
 }
 
+.roadmap-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.roadmap-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.roadmap-block {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.roadmap-block h3 {
+  margin: 0 0 8px;
+}
+
+.roadmap-block ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.roadmap-block li {
+  margin-bottom: 6px;
+}
+
 .search-panel {
   margin-bottom: 18px;
 }
